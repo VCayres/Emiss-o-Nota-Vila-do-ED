@@ -1,5 +1,9 @@
 # Vila do ED · Semana Tributária 2026
 
+> **Distribuição em análise de segurança:** foi relatado o aviso **“Vírus detectado”** durante o download pelo Chrome. A causa e o nome técnico da detecção ainda não foram identificados. Mantenha os arquivos de distribuição em quarentena e suspenda sua execução/importação até esclarecer o alerta. A verificação estrutural e os testes funcionais abaixo não são uma análise antivírus. Não desative as proteções para baixar ou executar os arquivos.
+>
+> O ZIP SCORM publicado foi comparado com o original e tem SHA-256 `4759e3c0c52db6d88e3fe62e48d4f71a6febd25abfdd295e639000e6bbb2d179`. Essa igualdade confirma integridade, sem comprovar ausência de malware. Não foi possível executar scanner independente neste ambiente: não há motor instalado e o acesso às assinaturas oficiais do ClamAV recebeu bloqueio 403. O pacote original foi preservado, sem alterações destinadas a contornar a detecção.
+
 Simulador educacional funcional, estático e offline, com três percursos e um SCO SCORM 1.2. Uma nota validada conclui a tentativa. Explorar outros estabelecimentos não duplica a contribuição nem reduz a aprovação.
 
 **Recorte entregue: protótipo fiscal demonstrativo.** As esferas de IBS/CBS são trabalhadas conceitualmente. Não há enquadramento por produto, códigos fiscais, alíquotas ou apuração. As consultas oficiais foram bloqueadas pela rede; veja [documentação fiscal](docs/CONTEUDO-FISCAL.md). A aplicação pode ser importada para homologação pedagógica, sem representar orientação fiscal validada para novembro de 2026.

@@ -1,8 +1,8 @@
 # Vila do ED · Semana Tributária 2026
 
-> **Distribuição em análise de segurança:** foi relatado o aviso **“Vírus detectado”** durante o download pelo Chrome. A causa e o nome técnico da detecção ainda não foram identificados. Mantenha os arquivos de distribuição em quarentena e suspenda sua execução/importação até esclarecer o alerta. A verificação estrutural e os testes funcionais abaixo não são uma análise antivírus. Não desative as proteções para baixar ou executar os arquivos.
+> **Análise de segurança do download:** foi relatado o aviso **“Vírus detectado”** durante o download pelo Chrome. A causa e o nome técnico daquela detecção não foram recuperados. Em análise independente posterior, o **ClamAV 1.5.4**, com base **28171 de 01/11/2026**, examinou os três artefatos de distribuição e os arquivos da aplicação: **10 arquivos examinados, 0 infectados, código de saída 0**. Consulte o [relatório e as evidências](docs/SEGURANCA-DOWNLOAD.md). Isso não reproduz o mecanismo do Windows/Chrome nem comprova falso positivo. Mantenha as proteções habilitadas; se houver novo bloqueio, preserve o alerta e obtenha os detalhes da detecção no antivírus ativo.
 >
-> O ZIP SCORM publicado foi comparado com o original e tem SHA-256 `4759e3c0c52db6d88e3fe62e48d4f71a6febd25abfdd295e639000e6bbb2d179`. Essa igualdade confirma integridade, sem comprovar ausência de malware. Não foi possível executar scanner independente neste ambiente: não há motor instalado e o acesso às assinaturas oficiais do ClamAV recebeu bloqueio 403. O pacote original foi preservado, sem alterações destinadas a contornar a detecção.
+> O ZIP SCORM publicado foi comparado com o original e tem SHA-256 `4759e3c0c52db6d88e3fe62e48d4f71a6febd25abfdd295e639000e6bbb2d179`. Essa igualdade confirma integridade, sem comprovar ausência de malware. O pacote original foi preservado, sem alterações destinadas a contornar a detecção.
 
 Simulador educacional funcional, estático e offline, com três percursos e um SCO SCORM 1.2. Uma nota validada conclui a tentativa. Explorar outros estabelecimentos não duplica a contribuição nem reduz a aprovação.
 

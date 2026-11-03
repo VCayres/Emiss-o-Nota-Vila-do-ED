@@ -1,0 +1,11 @@
+{
+  "name": "vila-ed-semana-tributaria-2026",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "python3 -m http.server 8000 --directory app --bind 0.0.0.0",
+    "test": "node --test --test-isolation=none tests/*.test.cjs",
+    "test:browser": "python3 tests/browser.py",
+    "build": "python3 scripts/package.py"
+  }
+}

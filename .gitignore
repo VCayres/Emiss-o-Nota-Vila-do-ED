@@ -1,0 +1,6 @@
+dist/*
+!dist/vila-do-ed-scorm12.zip
+!dist/vila-do-ed-demonstracao.html
+!dist/package-verification.json
+test-results/
+__pycache__/

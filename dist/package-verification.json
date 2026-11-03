@@ -1,0 +1,10 @@
+{
+  "archive": "vila-do-ed-scorm12.zip",
+  "files": 8,
+  "single_sco": true,
+  "entry": "index.html",
+  "manifest_references_complete": true,
+  "crc_valid": true,
+  "external_runtime_urls": 0,
+  "sha256": "4759e3c0c52db6d88e3fe62e48d4f71a6febd25abfdd295e639000e6bbb2d179"
+}

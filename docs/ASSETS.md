@@ -29,3 +29,9 @@ A seleção usa três janelas SVG com máscaras retangulares, evitando que a ár
 O fundo do cartão é HTML/CSS, separado do personagem. O desenho inteiro fica visível tanto no desktop quanto no celular. Nomes, textos, campos e botões continuam HTML acessível. A mesma folha é incorporada no HTML único e incluída localmente no SCORM, sem downloads em execução.
 
 Se for necessário usar exatamente os pixels dos arquivos originais aprovados, substitua a folha por exportações transparentes oficiais e ajuste as três janelas. Não trate a adaptação gerada como homologação de identidade visual.
+
+## Versão 3.1 — marca aprovada
+
+O usuário aprovou a proposta no chat e autorizou sua aplicação. `app/assets/marca-emissor.png` é uma cópia sem alteração da proposta aprovada: PNG RGBA de 1470 × 1070, com “Emissor de Notas da Vila do ED”, Ed sobre o galho e os elementos inferiores de registro. As ilustrações superiores de serviços públicos foram retiradas na proposta aprovada.
+
+SHA-256: `bde745bb29cb9b39b9c5de584c7f3bbf8b6f412f70fff064a9c4b106fc001461`. A imagem fica separada do título HTML acessível e é incluída no SCORM e incorporada no HTML único. A arte da abertura e a folha de personagens permanecem iguais às da versão 3.

@@ -4,20 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#174e40">
-  <title>Vila do ED • Semana Tributária 2026</title>
+  <title>Emissor de Notas da Vila do ED</title>
   <link rel="stylesheet" href="./styles.css">
   <script src="./config.js" defer></script>
   <script src="./classifications.js" defer></script>
   <script src="./rules.js" defer></script>
   <script src="./scorm.js" defer></script>
+  <script src="./display.js" defer></script>
   <script src="./app.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Ir para o conteúdo</a>
-  <header class="topbar"><div class="brand"><span class="brand-mark" aria-hidden="true">ED</span><div>VILA DO ED<small>Reconstruir é um esforço de todos.</small></div></div><div class="event">Semana Tributária <b>2026</b></div></header>
-  <div class="statusbar"><span id="mode"></span><span id="achievement"></span></div>
+  <header class="topbar">
+    <div class="brand"><img class="brand-logo" src="./assets/marca-emissor.png" width="1470" height="1070" alt=""><div class="brand-copy"><p class="brand-title">Emissor de Notas da Vila do ED</p><small>Reconstruir é um esforço de todos.</small></div></div>
+    <div class="header-tools"><div class="event">Semana Tributária <b>2026</b></div><button class="secondary fullscreen-toggle" id="fullscreen-toggle" type="button" aria-pressed="false" aria-describedby="display-status"><span aria-hidden="true">⛶</span><span id="fullscreen-label">Tela cheia</span></button></div>
+  </header>
+  <p id="display-status" role="status" aria-live="polite"></p>
   <div id="sync" role="status" aria-live="polite"></div>
   <main id="main" tabindex="-1"></main>
-  <footer><span>Simulação educacional — sem validade fiscal</span><span>Uma operação bem registrada. Uma vila mais forte.</span></footer>
+  <footer><span>Simulação educacional — sem validade fiscal</span><span>Uma operação bem registrada. Uma vila mais forte.</span><details class="activity-info"><summary>Sobre esta atividade</summary><p id="environment-info"></p><p>Dados e preços fictícios, sem emissão fiscal real. Os códigos de referência estão sujeitos à revisão especializada.</p></details></footer>
 </body>
 </html>

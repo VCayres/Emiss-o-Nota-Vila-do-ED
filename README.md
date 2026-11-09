@@ -1,14 +1,16 @@
-# Vila do ED · Semana Tributária 2026
+# Emissor de Notas da Vila do ED · Semana Tributária 2026
 
-> **Histórico do download:** houve um bloqueio pelo Chrome na versão 1. O [relatório de segurança](docs/SEGURANCA-DOWNLOAD.md) separa o alerta original e as análises realizadas por versão. A versão 3 foi examinada com ClamAV 1.5.4 e base 28177 de 08/11/2026: 11 arquivos, 0 infectados, saída 0. Uma análise vale apenas para os hashes e assinaturas registrados, sem esclarecer o alerta antigo do Chrome.
+> **Histórico do download:** houve um bloqueio pelo Chrome na versão 1. O [relatório de segurança](docs/SEGURANCA-DOWNLOAD.md) separa o alerta original e as análises realizadas por versão. A versão 3.1 foi examinada com ClamAV 1.5.4 e base 28177 de 08/11/2026: 13 arquivos, 0 infectados, saída 0. Uma análise vale apenas para os hashes e assinaturas registrados, sem esclarecer o alerta antigo do Chrome.
 
 Simulador educacional funcional, estático e offline, com três percursos e um SCO SCORM 1.2. Uma nota validada conclui a tentativa. Explorar outros estabelecimentos não duplica a contribuição nem reduz a aprovação.
 
-**Versão 3: comércio, indústria e serviço, conforme os prints da Vila do ED.** Zé vende os produtos de seu catálogo; Tina é indústria produtora e vendedora de concreto na Pedreira; Bené processa madeira do cliente para tábuas na Serralheria. Cliente e pedido vêm preenchidos. As vendas exercitam produtos, quantidades e preços; apenas o serviço exercita CNAE → CTN → NBS e a pergunta de retenção do ISS.
+**Versão 3.1: marca aprovada e tela cheia, com comércio, indústria e serviço.** Zé vende os produtos de seu catálogo; Tina é indústria produtora e vendedora de concreto na Pedreira; Bené processa madeira do cliente para tábuas na Serralheria. Cliente e pedido vêm preenchidos. As vendas exercitam produtos, quantidades e preços; apenas o serviço exercita CNAE → CTN → NBS e a pergunta de retenção do ISS.
 
 As perguntas de CST/cClassTrib foram retiradas de todos os percursos, inclusive da validação. Isso é um recorte pedagógico: **existem novos campos de IBS/CBS na NF-e/NFC-e de comércio e indústria**. Confira a [pesquisa técnica e seus limites](docs/REFORMA-COMERCIO-INDUSTRIA.md). Os portais oficiais continuam bloqueados pelo ambiente; não foi confirmado cronograma universal de obrigatoriedade em novembro de 2026. Não foram inventados NCM, CFOP, alíquotas ou enquadramentos dos itens ficcionais.
 
 A tela inicial mantém a arte da vila. Na escolha, os três personagens aparecem de corpo inteiro, separados do fundo, em recortes assistidos por IA das referências fornecidas. [Ver seleção de personagens](docs/evidencias/selecionar-v3.png).
+
+O cabeçalho usa a marca aprovada pelo usuário, com Ed no galho. O botão **Tela cheia** expande a atividade sem abrir outra sessão. As informações de ambiente ficam em “Sobre esta atividade”; falhas reais de salvamento continuam visíveis. [Ver abertura atual](docs/evidencias/abertura-v31.png).
 
 Os códigos de referência ainda são candidatos para revisão profissional; veja a [documentação fiscal](docs/CONTEUDO-FISCAL.md), especialmente a hipótese de serviço do Bené. A aprovação pedagógica significa correspondência com o pedido, não certificação fiscal.
 
@@ -28,7 +30,8 @@ O armazenamento local é exclusivo da demonstração. Com uma API SCORM detectad
 1. No curso, adicione uma atividade **Pacote SCORM** e envie o ZIP, sem descompactar. `imsmanifest.xml` já está na raiz; o ponto de entrada é `index.html`.
 2. Use nota máxima 100, método de avaliação **Nota mais alta** e exibição na janela atual/iframe. Não habilite opções que substituam o status enviado pelo SCO (por exemplo, forçar conclusão ou status ao atingir a nota máxima), salvo decisão pedagógica testada.
 3. Para conclusão do curso, configure a atividade para exigir aprovação. Não exija todos os percursos, nem múltiplas tentativas. Se desejar nova tentativa, use o mecanismo de tentativas do Moodle.
-4. Homologue com um aluno de teste: iniciar e sair incompleto; retomar; emitir uma nota correta; confirmar `passed` e 100 no relatório; reabrir e explorar outro personagem sem perder aprovação; concluir e voltar ao curso.
+4. A tela cheia depende da permissão do iframe do Moodle e do navegador. Quando houver controle do iframe, use `allow="fullscreen" allowfullscreen`; políticas de permissões do servidor também precisam permitir o recurso. Se bloqueado, o botão explica a indisponibilidade e a atividade continua na janela atual. Não são abertas cópias da tentativa. A configuração precisa ser homologada no Moodle utilizado.
+5. Homologue com um aluno de teste: iniciar e sair incompleto; retomar; emitir uma nota correta; confirmar `passed` e 100 no relatório; reabrir e explorar outro personagem sem perder aprovação; concluir e voltar ao curso.
 
 **Importação em um Moodle real ainda não foi executada:** não foram fornecidos instância ou acesso. O pacote foi verificado localmente e o fluxo foi testado em iframe com API SCORM 1.2 simulada. Confira [relatório de verificação](docs/VERIFICACAO.md).
 
@@ -40,6 +43,6 @@ O responsável pode consolidar aprovações nos relatórios do Moodle; os dados 
 
 ## Arte e revisão
 
-Os anexos fornecidos orientaram o catálogo, os processos e a aparência. A arte `app/assets/vila.png` é uma adaptação gerada, não um novo asset canônico aprovado. As imagens dos cartões são recortes CSS dessa mesma imagem. Substituição e pendências em [ASSETS.md](docs/ASSETS.md).
+Os anexos fornecidos orientaram o catálogo, os processos e a aparência. A arte `app/assets/vila.png` é uma adaptação gerada, não um novo asset canônico aprovado. Os cartões usam figuras completas de `personagens.png`; a marca aprovada fica em `marca-emissor.png`. Substituição e pendências em [ASSETS.md](docs/ASSETS.md).
 
 Não há SEFAZ, certificado, autorização, API externa, CDN, backend ou dependência de IA na execução. Não são produzidos XML/DPS, DANFSe, chave, protocolo ou QR Code fiscal. Somente a geração inicial da arte utilizou ferramenta de imagem.

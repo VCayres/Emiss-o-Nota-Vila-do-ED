@@ -26,8 +26,10 @@ def build():
     for path, uri in assets.items():
         css = css.replace(path, uri)
     html = (APP / 'index.html').read_text().replace('<link rel="stylesheet" href="./styles.css">', '<style>' + css + '</style>')
+    for path, uri in assets.items():
+        html = html.replace(path, uri)
     scripts = []
-    for name in ['config.js', 'classifications.js', 'rules.js', 'scorm.js', 'app.js']:
+    for name in ['config.js', 'classifications.js', 'rules.js', 'scorm.js', 'display.js', 'app.js']:
         html = html.replace(f'<script src="./{name}" defer></script>', '')
         js = (APP / name).read_text()
         if name == 'app.js':
@@ -51,7 +53,7 @@ def build():
     org = ET.SubElement(orgs, tag('organization'), {'identifier': 'ORG_VILA'})
     ET.SubElement(org, tag('title')).text = 'Vila do ED — Semana Tributária 2026'
     item = ET.SubElement(org, tag('item'), {'identifier': 'ITEM_VILA', 'identifierref': 'SCO_VILA', 'isvisible': 'true'})
-    ET.SubElement(item, tag('title')).text = 'Emissor educacional — comércio, indústria e serviço'
+    ET.SubElement(item, tag('title')).text = 'Emissor de Notas da Vila do ED'
     resources = ET.SubElement(manifest, tag('resources'))
     resource = ET.SubElement(resources, tag('resource'), {'identifier': 'SCO_VILA', 'type': 'webcontent', f'{{{ADL}}}scormtype': 'sco', 'href': 'index.html'})
     for name in files:

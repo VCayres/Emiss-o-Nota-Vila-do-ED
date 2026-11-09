@@ -1,0 +1,27 @@
+{
+  "date_utc": "2026-11-09T19:45:50.331887+00:00",
+  "scanner": "ClamAV 1.5.4",
+  "database": "28177 — 2026-11-08 06:23:52",
+  "official_image_manifest": "sha256:2a9be29239aea6c6fe17da9625f3c192f91974e61059d364e293f20277f931a3",
+  "exit_code": 0,
+  "archive_sha256": "2c3f6661ba07b3fe927280e30514279dec136ab06b3162a03578c9b52295f294",
+  "targets_sha256": {
+    "dist/vila-do-ed-scorm12.zip": "2c3f6661ba07b3fe927280e30514279dec136ab06b3162a03578c9b52295f294",
+    "dist/vila-do-ed-demonstracao.html": "c24dec6dcca025e52532fdeb344fdfb7c39aaa0fde919e8c18281b8214cd304b",
+    "app/app.js": "78e78f997f54504f7cb55de60a3740e56e578a25efba401b50a2103cde30e425",
+    "app/assets/marca-emissor.png": "bde745bb29cb9b39b9c5de584c7f3bbf8b6f412f70fff064a9c4b106fc001461",
+    "app/assets/personagens.png": "2137d02805d94240a82184313e5217d139ff93ae055c4eac6d58ed1a213befcc",
+    "app/assets/vila.png": "3b5c422d8c3ac46d03425c8362ba4ed9f530e09f8a7f158c5d47c81de44df62e",
+    "app/classifications.js": "dfca408d287e0c5d2d3970500fae23a26da2f29fbc304eca03340f391f39e420",
+    "app/config.js": "08bdb7c089007019b6f1b6491ce9c9cb7bd8e1122e44e5ce2619d6b421dd095a",
+    "app/display.js": "a31b63795a69e81eec95ae2a3c1ec83990e7f34fe9717f675460b7e4780be9ab",
+    "app/index.html": "61c23fdf158a1753b0799f0f8d6ce589b2ee78d8a4cb0d99d92212447ca15af1",
+    "app/rules.js": "28ecd86e0bb133681e316eb10994f608d4980d43c4eeb69386cdeae08f7a0dc3",
+    "app/scorm.js": "509354cff13556ea5572bf48f2cb2baf59f5dccdf6504eaf91658afe068dbeed",
+    "app/styles.css": "360006a1143d0e0d6780124cd6ed8dd89901e2e09130d08387b35b8f8b2c918d"
+  },
+  "network": "disabled during scan",
+  "mount": "read-only",
+  "log": "\n----------- SCAN SUMMARY -----------\nKnown viruses: 3628258\nEngine version: 1.5.4\nScanned directories: 2\nScanned files: 13\nInfected files: 0\nData scanned: 30.05 MiB\nData read: 25.06 MiB (ratio 1.20:1)\nTime: 23.929 sec (0 m 23 s)\nStart Date: 2026:11:09 19:45:26\nEnd Date:   2026:11:09 19:45:50\n",
+  "limits": "This result applies only to this engine, signature set and these bytes. It does not identify the previous Windows/Chrome detection or prove a false positive."
+}

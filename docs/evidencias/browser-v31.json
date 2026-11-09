@@ -1,0 +1,18 @@
+{
+  "version": "3.1",
+  "passed": [
+    "transparent full-body selection: each character has complete margins and transparent surroundings; three SVG viewports display the isolated figures",
+    "Zé: seven-product catalog, fixed client, fictional item and wrong quantity rejected without losing other work; corrected sale R$ 232,50",
+    "Tina: factory production and own concrete sale, fixed industrial CNAE, only concrete, no CTN/NBS/ISS; sale R$ 228,00",
+    "no CST/cClassTrib questions on any route; one completed sale suffices; duplicate submit and optional exploration preserve first contribution",
+    "mobile: full-body cards without horizontal overflow; Bené wood-processing service only; CNAE/CTN/NBS dependencies, ISS decision and R$ 150,00 validated; request remains reachable",
+    "SCORM iframe: industrial sale resumes partially; passed/100 and limits after validation; failed commit can retry; optional service preserves approval and one contribution; finish once; suspend <=4096 bytes",
+    "approved brand rendered; technical banners removed; true fullscreen in allowed LMS iframe enters/exits by button and Escape without resetting inputs or reinitializing SCORM; denied policy shows accessible fallback and preserves work",
+    "v1 and v2 approved attempts migrate to v3 without reusing an incompatible invoice or losing completion",
+    "single HTML embeds both scene and transparent full-body assets; no external runtime requests; labeled controls and keyboard navigation; standalone service issue succeeds"
+  ],
+  "browser_errors": [],
+  "external_requests": [],
+  "real_moodle_tested": false,
+  "official_classifications_verified": false
+}

@@ -19,12 +19,14 @@ window.API={
  LMSSetValue(k,v){calls.push([k,v]);error=fail===k?'101':'0';if(error!=='0')return 'false';data[k]=v;return 'true'},
  LMSCommit(){calls.push(['commit']);error=fail==='commit'?'101':'0';if(error!=='0')return 'false';persist();return 'true'},
  LMSFinish(){calls.push(['finish']);error='0';persist();return 'true'}
-};</script><iframe title="Atividade" src="/index.html" style="width:100%;height:95vh;border:0"></iframe></html>'''
+};</script><iframe title="Atividade" src="/index.html" allow="fullscreen" allowfullscreen style="width:100%;height:95vh;border:0"></iframe></html>'''
 
 class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
-        if self.path == '/lms.html':
-            body=HARNESS.encode(); self.send_response(200);self.send_header('Content-Type','text/html;charset=utf-8');self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
+        if self.path in ['/lms.html','/lms-no-fullscreen.html']:
+            body=HARNESS.encode(); self.send_response(200);
+            if self.path=='/lms-no-fullscreen.html':self.send_header('Permissions-Policy','fullscreen=()')
+            self.send_header('Content-Type','text/html;charset=utf-8');self.send_header('Content-Length',str(len(body)));self.end_headers();self.wfile.write(body)
         else:
             super().do_GET()
     def log_message(self, *args):
@@ -73,6 +75,10 @@ def run():
                 ctx.route('**/*',lambda route:route.continue_() if route.request.url.startswith(url) or route.request.url.startswith('data:') else (external.append(route.request.url),route.abort()));return ctx
             ctx=context(viewport={'width':1440,'height':1000},reduced_motion='reduce');page=ctx.new_page();page.goto(url)
             assert 'Tina produz concreto' in page.locator('.hero-copy').inner_text()
+            assert page.locator('.brand-logo').evaluate('img=>img.complete&&img.naturalWidth===1470')
+            assert page.locator('#achievement,#mode,.statusbar').count()==0
+            assert not page.locator('.activity-info').evaluate('el=>el.open')
+            assert 'SCORM 1.2' not in page.locator('body').inner_text()
             page.screenshot(path=str(RESULTS/'desktop-opening.png'),full_page=True)
             page.get_by_role('button',name='Escolher empresário').click();assert page.locator('.character-cutout').count()==3
             for index,actor in enumerate(['ze','tina','bene']):
@@ -128,7 +134,17 @@ def run():
             lp=ctx.new_page();lp.goto(url+'/lms.html');frame=lp.frames[1];assert lp.evaluate("data['cmi.core.lesson_status']")=='incomplete'
             choose(frame,'tina');fill(frame,'tina');frame.locator('#quantity-0').fill('7');lp.wait_for_timeout(450);lp.reload();frame=lp.frames[1]
             assert frame.locator('#quantity-0').input_value()=='7' and frame.locator('#product-0').input_value()=='concreto'
-            frame.locator('#quantity-0').fill('8');fill(frame,'tina');lp.evaluate("window.fail='commit'");frame.get_by_role('button',name='Emitir nota simulada').click();assert 'Falha no registro Moodle' in frame.locator('#sync').inner_text()
+            before=lp.evaluate('JSON.stringify(data)');initializations=lp.evaluate("calls.filter(x=>x[0]==='initialize').length")
+            frame.locator('#fullscreen-toggle').click();frame.wait_for_function('!!document.fullscreenElement')
+            assert lp.evaluate('document.fullscreenElement.tagName')=='IFRAME'
+            assert frame.locator('#fullscreen-toggle').get_attribute('aria-pressed')=='true'
+            assert frame.locator('#quantity-0').input_value()=='7'
+            frame.locator('#fullscreen-toggle').click();frame.wait_for_function('!document.fullscreenElement')
+            assert lp.evaluate('JSON.stringify(data)')==before
+            assert lp.evaluate("calls.filter(x=>x[0]==='initialize').length")==initializations
+            frame.locator('#fullscreen-toggle').click();frame.wait_for_function('!!document.fullscreenElement')
+            lp.keyboard.press('Escape');frame.wait_for_function('!document.fullscreenElement')
+            frame.locator('#quantity-0').fill('8');fill(frame,'tina');lp.evaluate("window.fail='commit'");frame.get_by_role('button',name='Emitir nota simulada').click();assert 'Não foi possível salvar seu progresso' in frame.locator('#sync').inner_text()
             lp.evaluate("window.fail=''");frame.get_by_role('button',name='Tentar salvar novamente').click();assert frame.locator('#sync').inner_text()==''
             data=lp.evaluate('data');assert data['cmi.core.lesson_status']=='passed' and data['cmi.core.score.raw']=='100'
             assert data['cmi.core.score.min']=='0' and data['cmi.core.score.max']=='100';assert 0<len(data['cmi.suspend_data'].encode())<=4096
@@ -138,11 +154,23 @@ def run():
             saved=json.loads(lp.evaluate("data['cmi.suspend_data']"));assert saved['contributions']==1 and saved['first']['merchant']=='tina'
             assert 'cst' not in saved['form'] and 'classTrib' not in saved['form']
             checks+=['SCORM iframe: industrial sale resumes partially; passed/100 and limits after validation; failed commit can retry; optional service preserves approval and one contribution; finish once; suspend <=4096 bytes']
+            denied=ctx.new_page();denied.goto(url+'/lms-no-fullscreen.html');df=denied.frames[1]
+            choose(df,'tina');df.locator('#quantity-0').fill('6');df.locator('#fullscreen-toggle').click()
+            assert 'não está disponível' in df.locator('#display-status').inner_text()
+            assert df.locator('#quantity-0').input_value()=='6' and df.evaluate('document.fullscreenElement===null')
+            assert denied.evaluate("data['cmi.core.lesson_status']")=='incomplete'
+            checks+=['approved brand rendered; technical banners removed; true fullscreen in allowed LMS iframe enters/exits by button and Escape without resetting inputs or reinitializing SCORM; denied policy shows accessible fallback and preserves work']
             for version in [1,2]:
                 old=context(viewport={'width':1280,'height':900});old.add_init_script("if(location.protocol==='http:'){localStorage.setItem('vila-ed-demo-v1',JSON.stringify({v:"+str(version)+",completed:true,contributions:1,first:{merchant:'ze'}}))}")
-                op=old.new_page();op.goto(url);assert 'conclusão da versão anterior' in op.locator('main').inner_text();assert 'Conclusão preservada' in op.locator('#achievement').inner_text()
+                op=old.new_page();op.goto(url);assert op.locator('#achievement,#mode,.migration-note').count()==0;assert op.evaluate("JSON.parse(localStorage.getItem('vila-ed-demo-v1')).completed")
             checks+=['v1 and v2 approved attempts migrate to v3 without reusing an incompatible invoice or losing completion']
             single=context(viewport={'width':1280,'height':900});fp=single.new_page();fp.goto(url+'/demo.html');assert fp.locator('.hero-art img').evaluate('img=>img.complete && img.naturalWidth>0')
+            assert fp.locator('.brand-logo').get_attribute('src').startswith('data:image/png;base64,')
+            fp.locator('.activity-info summary').click();assert 'sem registro no Moodle' in fp.locator('#environment-info').inner_text()
+            fp.locator('#fullscreen-toggle').click();fp.wait_for_function('!!document.fullscreenElement')
+            fp.locator('#fullscreen-toggle').click();fp.wait_for_function('!document.fullscreenElement')
+            fp.evaluate('document.documentElement.requestFullscreen=undefined;document.documentElement.webkitRequestFullscreen=undefined')
+            fp.locator('#fullscreen-toggle').click();assert 'não está disponível' in fp.locator('#display-status').inner_text()
             fp.locator('[data-action="choose"]').focus();fp.keyboard.press('Enter');assert fp.locator('.character-cutout').count()==3
             assert fp.locator('.character-cutout image').nth(0).get_attribute('href').startswith('data:image/png;base64,')
             fp.locator('[data-merchant="bene"]').focus();fp.keyboard.press('Enter');fill(fp,'bene')
@@ -153,7 +181,7 @@ def run():
             fp.get_by_role('button',name='Emitir nota simulada').click();assert fp.get_by_role('heading',name='Nota emitida!',exact=True).is_visible()
             checks+=['single HTML embeds both scene and transparent full-body assets; no external runtime requests; labeled controls and keyboard navigation; standalone service issue succeeds']
             assert not errors,errors;assert not external,external;browser.close()
-        report={'version':3,'passed':checks,'browser_errors':errors,'external_requests':external,'real_moodle_tested':False,'official_classifications_verified':False}
+        report={'version':'3.1','passed':checks,'browser_errors':errors,'external_requests':external,'real_moodle_tested':False,'official_classifications_verified':False}
         (RESULTS/'browser-report.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n');print(json.dumps(report,ensure_ascii=False,indent=2))
     finally:server.shutdown();server.server_close()
 

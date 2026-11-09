@@ -87,3 +87,9 @@ e7e13cdec29acbc13506b5edda6e668df44134df111ec600425732a180d2ae93
 ```
 
 Evidências: [log](evidencias/clamav-v3.log) e [relatório e hashes](evidencias/clamav-v3.json). O resultado é limitado a esse motor/base e a esses arquivos e não é certificação de ausência de malware ou diagnóstico do alerta original do Chrome. Não houve alteração de formato para contornar uma detecção.
+
+## Versão 3.1 — marca aprovada e tela cheia, 09/11/2026
+
+A nova aplicação, o ZIP SCORM e o HTML único foram novamente examinados em contêiner somente de leitura, sem rede, com ClamAV 1.5.4 e base 28177 de 08/11/2026. Resultado: **13 arquivos examinados, 0 infectados, saída 0**, sem avisos ou erros; 30,05 MiB analisados em 23,929 segundos. O ZIP editável é montado depois, incluindo os relatórios, e não foi alvo desta análise.
+
+SHA-256 do SCORM: `2c3f6661ba07b3fe927280e30514279dec136ab06b3162a03578c9b52295f294`. Hashes conferidos antes e depois do scan e após o build final. [Log](evidencias/clamav-v31.log) e [relatório com hashes](evidencias/clamav-v31.json). A análise é limitada ao motor, base e bytes registrados; não esclarece a detecção original do Chrome.

@@ -1,4 +1,4 @@
-# Verificação da versão 3
+# Verificação da versão 3.1
 
 Data: 09/11/2026. Aplicação estática em Python/Node/Chromium/Playwright disponíveis no ambiente. Os testes funcionais usam a cópia `dist/site` produzida pelo mesmo empacotador do ZIP.
 
@@ -14,6 +14,14 @@ Data: 09/11/2026. Aplicação estática em Python/Node/Chromium/Playwright dispo
 - Valores em centavos inteiros; formatos monetários inválidos e quantidades fora de 1–9999 rejeitados. Vendas podem ter os itens reordenados, sem omissão ou duplicação.
 - Uma emissão correta basta. Submissão repetida e exploração de outro estabelecimento não duplicam contribuição.
 
+## Apresentação e tela cheia na versão 3.1
+
+- Marca aprovada copiada sem alterações, título “Emissor de Notas da Vila do ED”, evento e frase coletiva preservados. Removidos os indicadores de modo, versão SCORM e conclusão preservada. Dados internos de retomada continuam intactos.
+- Informações de demonstração/registro ficam em um disclosure “Sobre esta atividade”, fechado na abertura. Falhas de salvamento continuam visíveis com botão de nova tentativa; diagnóstico técnico em disclosure próprio.
+- Fullscreen API real em iframe com permissão: entrar, sair pelo botão e por Escape, mantendo campos e dados SCORM, sem novo LMSInitialize. Política `fullscreen=()` bloqueada: aviso acessível, sem expansão fictícia nem perda do formulário.
+- HTML único: marca incorporada, entrada/saída de tela cheia e mensagem de recurso indisponível também testadas. Desktop e celular sem transbordamento horizontal.
+- O Moodle precisa permitir fullscreen no iframe e na política do servidor. Não há abertura automática de nova janela, duplicação de sessão ou alteração do formato de estado v3/identidade do SCO. Teste em Moodle real permanece pendente.
+
 ## Tela e acessibilidade
 
 - A arte da abertura foi preservada. Os retratos novos têm transparência verdadeira, com margens para cabeça e pés em cada personagem. PNG RGBA de 1536 × 1024, separado em janelas SVG; nenhum pixel do arquivo foi editado por scripts locais.
@@ -28,12 +36,12 @@ Data: 09/11/2026. Aplicação estática em Python/Node/Chromium/Playwright dispo
 - Iframe com API SCORM simulada: initialize/incomplete, retomada parcial de venda industrial, correção, passed/100, limites 0–100, localização e tempo de sessão. Falha de commit visível e nova tentativa bem-sucedida.
 - Reabrir e explorar serviço após venda aprovada preserva a aprovação e a primeira contribuição. Finish executado uma vez. Suspend_data abaixo de 4096 bytes.
 - Migração das versões 1 e 2 preserva conclusões; notas antigas incompatíveis não são apresentadas como novas notas válidas.
-- ZIP com manifesto XML na raiz, uma organização/item/SCO, namespaces IMS e ADL SCORM 1.2, entrada `index.html`; nove arquivos de aplicação (incluindo duas imagens) mais manifesto, todos declarados. CRC, referências e caminhos verificados. Sem URL externa de execução ou caminho de travessia.
+- ZIP com manifesto XML na raiz, uma organização/item/SCO, namespaces IMS e ADL SCORM 1.2, entrada `index.html`; onze arquivos de aplicação (incluindo três imagens) mais manifesto, todos declarados. CRC, referências e caminhos verificados. Sem URL externa de execução ou caminho de travessia.
 - Não houve validação XSD independente ou certificação ADL. Homologação em um Moodle real permanece pendente por falta de acesso fornecido.
 
-Evidências: `test-results/browser-report.json`, capturas desktop/mobile, `docs/evidencias/selecionar-v3.png` e `docs/evidencias/browser-v3.json`. SHA-256 do pacote em `dist/package-verification.json`. O ZIP editável inclui fontes, documentação e evidências disponíveis no build.
+Evidências: `test-results/browser-report.json`, capturas desktop/mobile, `docs/evidencias/abertura-v31.png`, `docs/evidencias/selecionar-v31.png` e `docs/evidencias/browser-v31.json`. SHA-256 do pacote em `dist/package-verification.json`. O ZIP editável inclui fontes, documentação e evidências disponíveis no build.
 
-O build final foi examinado com ClamAV 1.5.4 e base 28177 de 08/11/2026: 11 arquivos, 0 infectados, saída 0. O resultado antivírus de outra versão não é reaproveitado como prova de segurança de novos bytes; consulte os registros por versão em `SEGURANCA-DOWNLOAD.md`.
+O build final foi examinado com ClamAV 1.5.4 e base 28177 de 08/11/2026: 13 arquivos, 0 infectados, saída 0. O resultado antivírus de outra versão não é reaproveitado como prova de segurança de novos bytes; consulte os registros por versão em `SEGURANCA-DOWNLOAD.md`.
 
 ## Conteúdo fiscal: limite da verificação
 

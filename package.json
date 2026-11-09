@@ -1,6 +1,6 @@
 {
   "name": "vila-ed-semana-tributaria-2026",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "private": true,
   "scripts": {
     "start": "python3 -m http.server 8000 --directory app --bind 0.0.0.0",

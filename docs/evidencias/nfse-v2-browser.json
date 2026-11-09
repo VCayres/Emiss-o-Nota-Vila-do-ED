@@ -1,0 +1,16 @@
+{
+  "version": 2,
+  "passed": [
+    "desktop: client/description/value prefilled; only relevant CNAEs; locked CTN/NBS unlocked in cascade; upstream changes reset dependents",
+    "wrong CTN, NBS, price and ISS retention rejected without erasing work; corrected service emitted at R$ 250,00",
+    "IBS/CBS classified separately; wrong reduced/urban rehabilitation class rejected; repeated submit and optional route preserve first contribution",
+    "mobile 390px: request available during input, no horizontal page overflow; Tina issued at R$ 1.800,00 with ISS retention",
+    "SCORM iframe: partial dependent selections resume; valid Bené service passes 100/min0/max100; suspend <=4096 bytes; commit failure retry; approved reentry; finish once",
+    "migration from merchandise v1 preserves an already completed contribution without treating the old invoice as a new service invoice",
+    "single-file HTML includes classification data, styling and art; keyboard reaches all fields; all controls labeled; full standalone service issue succeeds"
+  ],
+  "browser_errors": [],
+  "external_requests": [],
+  "real_moodle_tested": false,
+  "official_classifications_verified": false
+}

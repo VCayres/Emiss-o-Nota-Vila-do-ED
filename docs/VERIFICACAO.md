@@ -1,36 +1,35 @@
-# Verificação da entrega
+# Verificação da versão 2 — emissor NFS-e simplificado
 
-Execução em 03/11/2026. Ambiente: Python 3.12.14, Node 24.22.1, npm 11.9.0, Chromium do ambiente e Playwright Python. Os testes de navegador usam a cópia de distribuição em `dist/site`, produzida pelo mesmo empacotador que cria o ZIP.
+Data: 09/11/2026. Python 3.12, Node 24, Chromium e Playwright do ambiente. Aplicação estática, sem dependências de produção. Testes funcionais executados sobre `dist/site`, a mesma cópia de arquivos usada pelo empacotador do ZIP.
 
-## Verificado
+## Resultados
 
-- 16 testes automatizados de regras e adaptador, todos aprovados, sem testes desabilitados. O comando `npm test` usa execução sem isolamento entre arquivos para expor a contagem dos casos individuais neste runtime.
-- Nos três percursos, nota vazia é rejeitada e o preenchimento correto é aceito. Valores esperados: Zé R$ 232,50; Tina R$ 228,00; Bené R$ 197,50.
-- Cálculos em centavos inteiros; rejeição de valores negativos, notação exponencial, frações indevidas e formato inválido; unidade e destinatário conferidos; item repetido ou incompatível rejeitado; itens ficcionais fora dos pedidos avaliados.
-- Navegador desktop: preencher, conferir, corrigir erro de preço e produto, preservar outros valores e emitir. Clique/submissão repetida não cria segunda contribuição. Representação legível da venda e avisos educacionais presentes.
-- Navegador móvel 390 × 844: percurso da Tina concluído, ausência de transbordamento horizontal da página e acesso ao pedido durante o formulário.
-- Teclado: entrada por Enter e Tab em todos os controles interativos do formulário; `input` e `select` com rótulos associados. Foco visível, erros por campo, mensagens de status e preferência de movimento reduzido implementados. Não foi realizada auditoria WCAG completa com leitores de tela reais.
-- Sem LMS: modo demonstração explicitamente identificado, retomada local e preservação da primeira contribuição ao explorar um segundo percurso.
-- Dentro de iframe com API SCORM 1.2 simulada: initialize, incomplete, retomada parcial, passed, nota 100, limites 0–100, localização, tempo, suspend_data inferior a 4096 bytes, commits importantes e finish único.
-- Falha simulada de commit: aviso visível, botão de nova tentativa e confirmação de gravação após recuperação. API LMS com falha não recebe fallback silencioso para armazenamento local.
-- Reentrada aprovada e exploração opcional não rebaixam status. Nova tentativa com `entry=ab-initio` não herda progresso da tentativa anterior. Descoberta da API suporta pais/opener com guardas de origem e limite de percurso.
-- Nenhuma exceção JavaScript ou solicitação externa nos testes funcionais sobre HTTP local.
-- Empacotamento: ZIP com CRC válido, manifesto XML com namespace IMS e ADL SCORM 1.2, uma organização, um item, um SCO e `index.html` como entrada. Cada arquivo local é declarado e está presente. Não há caminhos absolutos, travessia de diretório ou URLs externas no código de execução. Asserções estruturais foram executadas; não foi realizada validação XSD independente ou certificação ADL.
-- O comando de desenvolvimento `npm start` foi executado; a página e os scripts foram servidos com HTTP 200. Não há instalação de dependências de aplicação.
+- **22 testes unitários aprovados**: 14 de regras/retomada/classificações e 8 do adaptador SCORM. Nenhum caso desabilitado ou marcado como esperado falhar.
+- Os três contratos trazem cliente, local, descrição e valor corretos; classificações vazias são rejeitadas e as escolhas do cenário são aceitas. Valores brutos: Zé R$ 250,00; Tina R$ 1.800,00; Bené R$ 450,00.
+- Mudança de CNAE limpa CTN e NBS; mudança de CTN limpa NBS; CTN e NBS ficam desabilitados até a escolha anterior. As opções são limitadas ao estabelecimento e ao ramo selecionado.
+- CST muda as opções de cClassTrib e limpa a seleção anterior. Classificações incompatíveis e o benefício não caracterizado de reabilitação urbana são rejeitados.
+- Retenção ISS validada separadamente por contrato. Nenhuma alíquota ou valor líquido foi inventado. Campo monetário usa centavos inteiros; formatos negativos, exponenciais, inválidos e com milhar são rejeitados.
+- Desktop: erro de preço, NBS, CTN e retenção sinalizado por campo; cliente e escolhas independentes preservados; correção, conferência e emissão concluídas. Submissão repetida não duplica contribuição.
+- Celular 390 × 844: percurso da Tina emitido com retenção, sem transbordamento horizontal, com solicitação consultável durante o formulário.
+- Teclado: Enter inicia a seleção; Tab alcança todos os campos após liberação. Todos os inputs, selects e textarea têm rótulos associados. Há foco visível, mensagens associadas e status acessível. Não foi feita auditoria completa com leitor de tela real.
+- Demonstração: HTML único testado sobre HTTP local, incluindo imagem, estilos e novo catálogo de códigos incorporados; emissão completa do Bené. A política administrativa do navegador deste ambiente impede abrir `file://`; essa modalidade não foi homologada aqui.
+- Retomada SCORM em iframe: cliente e escolhas dependentes recuperados; pendências corrigidas; passed/100 e limites 0–100 após validação; localização e tempo de sessão registrados; suspend_data abaixo de 4096 bytes.
+- Falha de commit simulada produz aviso e nova tentativa funciona. Reabrir, explorar outro estabelecimento e emitir outra nota não reduz aprovação nem cria contribuição adicional. Finish executado uma vez.
+- Migração de estado da versão 1 preserva uma aprovação/contribuição anterior e reinicia os formulários no fluxo de serviços. A nota antiga não é apresentada como NFS-e.
+- **Zero exceções JavaScript e zero solicitações externas** no teste funcional concluído. Um primeiro teste falhou porque sua preparação de armazenamento tentava acessar localStorage de uma página sem origem; a preparação foi limitada a páginas HTTP e o teste completo foi reexecutado com sucesso. A aplicação não teve sua validação enfraquecida para aprovar o teste.
+- Análise antivírus final do ZIP SCORM, HTML único e fontes: ClamAV 1.5.4, base 28177 de 08/11/2026, 10 arquivos examinados, 0 infectados, saída 0. Evidências em `docs/SEGURANCA-DOWNLOAD.md`.
+- ZIP verificado: CRC válido, manifesto na raiz, namespaces IMS/ADL SCORM 1.2, uma organização/item/SCO, entrada `index.html`, oito arquivos de aplicação declarados (incluindo `classifications.js`) mais manifesto. Nenhuma URL externa de execução ou caminho de travessia. Não houve validação XSD independente ou certificação ADL.
 
-Evidências geradas: `test-results/browser-report.json`, capturas `desktop-opening.png`, `desktop-receipt.png`, `mobile-form.png`; `dist/package-verification.json` contém o SHA-256 do ZIP. `npm run build` é determinístico para os mesmos arquivos de entrada.
+Evidências geradas em `test-results/browser-report.json`, `desktop-opening.png`, `desktop-form.png`, `desktop-receipt.png` e `mobile-form.png`. `dist/package-verification.json` registra o SHA-256 do pacote. O pacote editável inclui as evidências disponíveis no momento do build.
 
-## Limitações e pendências
+## Limites
 
-- **Moodle real:** não foi fornecida instância. A importação e os relatórios finais precisam de homologação no Moodle de destino. O teste de API simulada não substitui essa verificação.
-- **Conteúdo fiscal vigente:** acesso às fontes oficiais bloqueado pelo proxy com 403. A entrega é o recorte demonstrativo descrito em `CONTEUDO-FISCAL.md`, sem códigos/alíquotas ou apuração. Nenhuma versão técnica fiscal foi validada.
-- **Arte:** adaptação gerada das referências anexadas, sujeita à aprovação visual; substituível sem alterar regras.
-- **Arquivo local:** `file://` bloqueado pela política administrativa do Chromium do ambiente (`ERR_BLOCKED_BY_ADMINISTRATOR`). Demonstração autônoma validada por HTTP local; não foram alteradas políticas do navegador para contornar esse bloqueio.
-- Navegadores adicionais, leitores de tela reais e a versão específica do Moodle de destino não foram testados.
+- Importação no Moodle real e relatórios da instância de destino não foram executados por falta de acesso a um Moodle fornecido. A integração foi testada com API SCORM 1.2 simulada em iframe.
+- Códigos e hipóteses fiscais são candidatos de fontes secundárias; confirmação oficial vigente e revisão profissional pendentes. Ver `CONTEUDO-FISCAL.md`, incluindo a pendência específica de CNAE do Bené e os requisitos de obra de Tina omitidos no recorte.
+- A arte adaptada continua sujeita à aprovação do responsável pela identidade visual.
+- Qualquer resultado antivírus vale para os hashes, motor e base registrados em `SEGURANCA-DOWNLOAD.md`; não é certificação de ausência de malware ou diagnóstico do bloqueio original do Chrome.
 
 ## Reproduzir
-
-Na raiz do repositório:
 
 ```sh
 npm test
@@ -38,4 +37,4 @@ npm run build
 npm run test:browser
 ```
 
-O teste funcional inicia e encerra seu próprio servidor temporário. No ambiente gerenciado, os comandos que abrem sockets e executam Chromium podem exigir a permissão de execução fornecida pela plataforma. Não desabilite TLS ou controles de rede.
+Na raiz do checkout. O teste funcional abre e fecha seu próprio servidor local. Servidor/Chromium podem exigir a execução suportada fora da sandbox local; preservar proxy, TLS e política de rede.

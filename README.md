@@ -1,12 +1,12 @@
 # Vila do ED · Semana Tributária 2026
 
-> **Análise de segurança do download:** foi relatado o aviso **“Vírus detectado”** durante o download pelo Chrome. A causa e o nome técnico daquela detecção não foram recuperados. Em análise independente posterior, o **ClamAV 1.5.4**, com base **28171 de 01/11/2026**, examinou os três artefatos de distribuição e os arquivos da aplicação: **10 arquivos examinados, 0 infectados, código de saída 0**. Consulte o [relatório e as evidências](docs/SEGURANCA-DOWNLOAD.md). Isso não reproduz o mecanismo do Windows/Chrome nem comprova falso positivo. Mantenha as proteções habilitadas; se houver novo bloqueio, preserve o alerta e obtenha os detalhes da detecção no antivírus ativo.
->
-> O ZIP SCORM publicado foi comparado com o original e tem SHA-256 `4759e3c0c52db6d88e3fe62e48d4f71a6febd25abfdd295e639000e6bbb2d179`. Essa igualdade confirma integridade, sem comprovar ausência de malware. O pacote original foi preservado, sem alterações destinadas a contornar a detecção.
+> **Histórico do download:** houve um bloqueio pelo Chrome na versão 1. O [relatório de segurança](docs/SEGURANCA-DOWNLOAD.md) separa o alerta original e as análises realizadas por versão. A versão 2 foi examinada com ClamAV 1.5.4 e base 28177 de 08/11/2026: 10 arquivos, 0 infectados, saída 0. Uma análise vale apenas para os hashes e assinaturas registrados, sem esclarecer o alerta antigo do Chrome.
 
 Simulador educacional funcional, estático e offline, com três percursos e um SCO SCORM 1.2. Uma nota validada conclui a tentativa. Explorar outros estabelecimentos não duplica a contribuição nem reduz a aprovação.
 
-**Recorte entregue: protótipo fiscal demonstrativo.** As esferas de IBS/CBS são trabalhadas conceitualmente. Não há enquadramento por produto, códigos fiscais, alíquotas ou apuração. As consultas oficiais foram bloqueadas pela rede; veja [documentação fiscal](docs/CONTEUDO-FISCAL.md). A aplicação pode ser importada para homologação pedagógica, sem representar orientação fiscal validada para novembro de 2026.
+**Versão 2: emissor simplificado de NFS-e de serviços.** Cliente, local, discriminação e valor vêm preenchidos conforme o personagem. O participante escolhe CNAE → CTN → NBS, retenção do ISS e CST/cClassTrib de IBS/CBS. Os códigos são candidatos reais encontrados em fontes secundárias, com [proveniência e pendências de revisão](docs/CONTEUDO-FISCAL.md). As consultas oficiais seguem bloqueadas pela rede; não há enquadramento homologado, alíquotas ou apuração. A aprovação pedagógica significa correspondência com o cenário, não certificação fiscal.
+
+[Ver uma captura do emissor corrigido](docs/evidencias/nfse-v2.png).
 
 ## Usar
 
@@ -14,7 +14,7 @@ Simulador educacional funcional, estático e offline, com três percursos e um S
 - Demonstração: execute `npm start` na raiz e acesse a porta 8000 localmente. Também é possível abrir `app/index.html` em navegadores que permitam arquivos locais; a política do Chromium deste ambiente bloqueia `file://`, portanto essa modalidade não foi validada aqui. Nenhuma instalação de dependências é necessária para executar a aplicação.
 - Pacote Moodle: `dist/vila-do-ed-scorm12.zip`, criado com `npm run build` (Python 3.10+).
 - Entrega editável: `dist/vila-do-ed-projeto.zip`, com fontes, documentação, pacote SCORM e evidências de testes disponíveis no momento do build. Importe no Moodle apenas o ZIP SCORM.
-- Código: `app/`. Dados/preços em `config.js`; recorte e validação em `rules.js`; integração em `scorm.js`; interface em `app.js` e `styles.css`.
+- Código: `app/`. Contratos/preços em `config.js`; códigos e opções em `classifications.js`; validação em `rules.js`; integração em `scorm.js`; interface em `app.js` e `styles.css`.
 - Testes: `npm test` (Node 22+). Testes funcionais: `npm run build` seguido de `npm run test:browser`, com Python Playwright e Chromium instalados. O script de teste usa apenas servidor local temporário e API SCORM simulada; não exige acesso externo nem Moodle.
 
 O armazenamento local é exclusivo da demonstração. Com uma API SCORM detectada, falhas no LMS são apresentadas e não são mascaradas por armazenamento local. Navegação privada e restrições a `file://` podem impedir a persistência da demonstração; nesse caso use o servidor local.
@@ -30,7 +30,7 @@ O armazenamento local é exclusivo da demonstração. Com uma API SCORM detectad
 
 ## Resultados e dados
 
-O SCO envia `cmi.core.lesson_status`, nota, limites 0–100, localização, tempo de sessão e `cmi.suspend_data`. Neste último ficam `v`, `step`, `merchant`, `form`, `completed`, `first` (primeiro percurso validado) e `contributions` (0 ou 1 por tentativa). O tempo é acumulado pelo LMS a partir das sessões, sem cronômetro eliminatório. O pacote não faz chamadas externas, não coleta dados pessoais, não cria ranking, não gera chave, protocolo ou QR Code fiscal.
+A versão 2 preserva aprovações anteriores na retomada. Um formulário antigo de mercadorias é reiniciado no novo fluxo de serviços, sem converter sua nota em NFS-e. O SCO envia `cmi.core.lesson_status`, nota, limites 0–100, localização, tempo de sessão e `cmi.suspend_data`. Neste último ficam `v`, `step`, `merchant`, `form`, `completed`, `first` (primeiro percurso validado) e `contributions` (0 ou 1 por tentativa), além de `legacyCompleted` quando houve conclusão na versão anterior. O tempo é acumulado pelo LMS a partir das sessões, sem cronômetro eliminatório. O pacote não faz chamadas externas, não coleta dados pessoais, não cria ranking, não gera chave, protocolo ou QR Code fiscal.
 
 O responsável pode consolidar aprovações nos relatórios do Moodle; os dados de retomada podem ser consultados no acompanhamento SCORM conforme permissões e versão do Moodle. Para contar pessoas, consolide uma aprovação por participante, não todas as tentativas ou reaberturas. O SCO não conhece totais globais e não envia eventos para um contador externo.
 
@@ -38,4 +38,4 @@ O responsável pode consolidar aprovações nos relatórios do Moodle; os dados 
 
 Os anexos fornecidos orientaram o catálogo, os processos e a aparência. A arte `app/assets/vila.png` é uma adaptação gerada, não um novo asset canônico aprovado. As imagens dos cartões são recortes CSS dessa mesma imagem. Substituição e pendências em [ASSETS.md](docs/ASSETS.md).
 
-Não há SEFAZ, certificado, autorização, API externa, CDN, backend ou dependência de IA na execução. Somente a geração inicial da arte utilizou ferramenta de imagem.
+Não há SEFAZ, certificado, autorização, API externa, CDN, backend ou dependência de IA na execução. Não são produzidos XML/DPS, DANFSe, chave, protocolo ou QR Code fiscal. Somente a geração inicial da arte utilizou ferramenta de imagem.

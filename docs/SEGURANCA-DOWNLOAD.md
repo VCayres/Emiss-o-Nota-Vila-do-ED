@@ -1,5 +1,9 @@
 # Investigação do alerta de download
 
+Este documento distingue a versão 1 analisada em 03/11/2026 e a versão 2 de NFS-e analisada em 09/11/2026. Os hashes são diferentes por causa das mudanças funcionais solicitadas, não para contornar a detecção.
+
+## Registro histórico — versão 1
+
 Em 03/11/2026, foi relatado e mostrado em captura o aviso do Chrome **“Falha — Vírus detectado”** para `vila-do-ed-scorm12.zip`, com origem `chatgpt.com`. Não foi informado nome técnico de ameaça ou arquivo interno. O usuário informou que o histórico anterior do Windows deixou de estar disponível após instalar o Avast e que uma verificação posterior do computador não encontrou ameaças. Essa verificação do computador não demonstra que o ZIP interrompido foi examinado integralmente.
 
 ## Integridade e revisão inicial
@@ -42,3 +46,25 @@ O resultado registra ausência de detecções por **esse motor e essa base, ness
 Não foram renomeados, reempacotados ou alterados os arquivos para contornar o alerta. O hash do ZIP SCORM permanece o mesmo da entrega original. Os únicos arquivos alterados nesta atualização são documentação e evidências.
 
 Com o antivírus instalado, atualizado e ativo, uma nova tentativa normal de download pode gerar um resultado atual ou um novo registro de detecção. Se ocorrer novo bloqueio, interrompa a tentativa e registre nome técnico, caminho afetado e horário no antivírus ativo. Não desative proteções, não crie exceções e não use outro navegador ou formato para contornar o bloqueio.
+
+
+## Versão 2 — emissor simplificado de NFS-e, 09/11/2026
+
+O novo ZIP inclui classificações e validações de serviços solicitadas pelo usuário. A análise anterior não foi reaproveitada como evidência para esses bytes.
+
+- Motor oficial: **ClamAV 1.5.4**.
+- Base: **28177, 08/11/2026 06:23:52 UTC**, da imagem oficial `clamav/clamav:stable` disponível na data da consulta.
+- Manifesto da plataforma amd64: `sha256:2a9be29239aea6c6fe17da9625f3c192f91974e61059d364e293f20277f931a3`.
+- Digests de manifesto, configuração, blobs e camadas descomprimidas conferidos. TLS preservado.
+- Contêiner sem rede, sem capacidades adicionais e com projeto somente de leitura; nenhum arquivo do projeto foi executado ou enviado para análise externa.
+- Alvos: ZIP SCORM, HTML único de demonstração e oito arquivos de aplicação. O ZIP editável completo não foi alvo desta análise final: ele é montado depois para incluir também documentação e evidências.
+- Resultado: **10 arquivos examinados, 2 diretórios, 0 infectados, saída 0**, sem avisos ou erros na execução final; 16,36 MiB analisados; 22,903 segundos.
+- A primeira execução da versão 2, com a base antiga de 01/11, também não detectou ameaças, mas emitiu aviso de base com mais de sete dias. Esse aviso motivou a obtenção da imagem oficial mais recente e a execução final acima; não foi omitido nem contornado.
+
+SHA-256 do novo ZIP SCORM:
+
+```text
+5f22f649297f05f57acaf466eb69a6c9a074f8b7458a19ecb0ad4e1ac7fb5bfd
+```
+
+Evidências: [log final](evidencias/clamav-nfse-v2.log) e [relatório com hashes dos arquivos examinados](evidencias/clamav-nfse-v2.json). Os hashes foram novamente conferidos após o empacotamento final. O resultado vale para esse motor/base e esses arquivos; não comprova falso positivo do alerta original nem ausência universal de malware.

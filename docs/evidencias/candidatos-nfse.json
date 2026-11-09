@@ -1,0 +1,257 @@
+{
+  "consultadoEm": "2026-11-09",
+  "status": "fontes secundárias; validação oficial e profissional pendente",
+  "versaoTabela": "2026-09-14",
+  "origemTabela": "https://github.com/rvgestaointeligente/nfse-rules",
+  "origemCnae": "https://github.com/JBCCONTABIL/codigosfiscais",
+  "correlacoes": [
+    {
+      "item": "07.02",
+      "descItem": "Execução, Por Administração, Empreitada Ou Subempreitada, De Obras De Construção Civil, Hidráulica Ou Elétrica E De Outras Obras Semelhantes, Inclusive Sondagem, Perfuração De Poços, Escavação, Drenagem E Irrigação, Terraplanagem, Pavimentação, Concretagem E A Instalação E Montagem De Produtos, Peças E Equipamentos (Exceto O Fornecimento De Mercadorias Produzidas Pelo Prestador De Serviços Fora Do Local Da Prestação Dos Serviços, Que Fica Sujeito Ao ICMS).",
+      "nbs": "1.0103.20.00",
+      "descNbs": "Serviços de preparação de terrenos e de canteiros de obras",
+      "cTribNac": null,
+      "indop": "020201",
+      "cClassTrib": "200046",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Operações com bens imóveis",
+      "confiancaCTribNac": "baixa",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "070201",
+          "desc": "Execução, por administração, de obras de construção civil, hidráulica ou elétrica e de outras obras semelhantes, inclusive sondagem, perfuração de poços, escavação, drenagem e irrigação, terraplanagem, pavimentação, concretagem e a instalação e montagem de produtos, peças e equipamentos (exceto o fornecimento de mercadorias produzidas pelo prestador de serviços fora do local da prestação dos serviços, que fica sujeito ao ICMS)."
+        },
+        {
+          "cTribNac": "070202",
+          "desc": "Execução, por empreitada ou subempreitada, de obras de construção civil, hidráulica ou elétrica e de outras obras semelhantes, inclusive sondagem, perfuração de poços, escavação, drenagem e irrigação, terraplanagem, pavimentação, concretagem e a instalação e montagem de produtos, peças e equipamentos (exceto o fornecimento de mercadorias produzidas pelo prestador de serviços fora do local da prestação dos serviços, que fica sujeito ao ICMS)."
+        }
+      ],
+      "situacoesEspeciais": [
+        {
+          "cClassTrib": "200045",
+          "descricao": "Operações relacionadas a projetos de reabilitação urbana de zonas históricas e de áreas críticas de recuperação e reconversão urbanística"
+        }
+      ]
+    },
+    {
+      "item": "07.02",
+      "descItem": "Execução, Por Administração, Empreitada Ou Subempreitada, De Obras De Construção Civil, Hidráulica Ou Elétrica E De Outras Obras Semelhantes, Inclusive Sondagem, Perfuração De Poços, Escavação, Drenagem E Irrigação, Terraplanagem, Pavimentação, Concretagem E A Instalação E Montagem De Produtos, Peças E Equipamentos (Exceto O Fornecimento De Mercadorias Produzidas Pelo Prestador De Serviços Fora Do Local Da Prestação Dos Serviços, Que Fica Sujeito Ao ICMS).",
+      "nbs": "1.0105.40.00",
+      "descNbs": "Serviços de concretagem",
+      "cTribNac": null,
+      "indop": "020201",
+      "cClassTrib": "200046",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Operações com bens imóveis",
+      "confiancaCTribNac": "baixa",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "070201",
+          "desc": "Execução, por administração, de obras de construção civil, hidráulica ou elétrica e de outras obras semelhantes, inclusive sondagem, perfuração de poços, escavação, drenagem e irrigação, terraplanagem, pavimentação, concretagem e a instalação e montagem de produtos, peças e equipamentos (exceto o fornecimento de mercadorias produzidas pelo prestador de serviços fora do local da prestação dos serviços, que fica sujeito ao ICMS)."
+        },
+        {
+          "cTribNac": "070202",
+          "desc": "Execução, por empreitada ou subempreitada, de obras de construção civil, hidráulica ou elétrica e de outras obras semelhantes, inclusive sondagem, perfuração de poços, escavação, drenagem e irrigação, terraplanagem, pavimentação, concretagem e a instalação e montagem de produtos, peças e equipamentos (exceto o fornecimento de mercadorias produzidas pelo prestador de serviços fora do local da prestação dos serviços, que fica sujeito ao ICMS)."
+        }
+      ],
+      "situacoesEspeciais": [
+        {
+          "cClassTrib": "200045",
+          "descricao": "Operações relacionadas a projetos de reabilitação urbana de zonas históricas e de áreas críticas de recuperação e reconversão urbanística"
+        }
+      ]
+    },
+    {
+      "item": "07.02",
+      "descItem": "Execução, Por Administração, Empreitada Ou Subempreitada, De Obras De Construção Civil, Hidráulica Ou Elétrica E De Outras Obras Semelhantes, Inclusive Sondagem, Perfuração De Poços, Escavação, Drenagem E Irrigação, Terraplanagem, Pavimentação, Concretagem E A Instalação E Montagem De Produtos, Peças E Equipamentos (Exceto O Fornecimento De Mercadorias Produzidas Pelo Prestador De Serviços Fora Do Local Da Prestação Dos Serviços, Que Fica Sujeito Ao ICMS).",
+      "nbs": "1.0107.30.00",
+      "descNbs": "Serviços de pintura",
+      "cTribNac": null,
+      "indop": "020201",
+      "cClassTrib": "200046",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Operações com bens imóveis",
+      "confiancaCTribNac": "baixa",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "070201",
+          "desc": "Execução, por administração, de obras de construção civil, hidráulica ou elétrica e de outras obras semelhantes, inclusive sondagem, perfuração de poços, escavação, drenagem e irrigação, terraplanagem, pavimentação, concretagem e a instalação e montagem de produtos, peças e equipamentos (exceto o fornecimento de mercadorias produzidas pelo prestador de serviços fora do local da prestação dos serviços, que fica sujeito ao ICMS)."
+        },
+        {
+          "cTribNac": "070202",
+          "desc": "Execução, por empreitada ou subempreitada, de obras de construção civil, hidráulica ou elétrica e de outras obras semelhantes, inclusive sondagem, perfuração de poços, escavação, drenagem e irrigação, terraplanagem, pavimentação, concretagem e a instalação e montagem de produtos, peças e equipamentos (exceto o fornecimento de mercadorias produzidas pelo prestador de serviços fora do local da prestação dos serviços, que fica sujeito ao ICMS)."
+        }
+      ],
+      "situacoesEspeciais": [
+        {
+          "cClassTrib": "200045",
+          "descricao": "Operações relacionadas a projetos de reabilitação urbana de zonas históricas e de áreas críticas de recuperação e reconversão urbanística"
+        }
+      ]
+    },
+    {
+      "item": "11.04",
+      "descItem": "Armazenamento, Depósito, Carga, Descarga, Arrumação E Guarda De Bens De Qualquer Espécie.",
+      "nbs": "1.0601.10.00",
+      "descNbs": "Serviços de manuseio de contêineres",
+      "cTribNac": null,
+      "indop": "050101",
+      "cClassTrib": "000001",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Situações tributadas integralmente pelo IBS e CBS.",
+      "confiancaCTribNac": "baixa",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "110401",
+          "desc": "Armazenamento, depósito, guarda de bens de qualquer espécie."
+        },
+        {
+          "cTribNac": "110402",
+          "desc": "Carga, descarga, arrumação de bens de qualquer espécie."
+        }
+      ],
+      "situacoesEspeciais": []
+    },
+    {
+      "item": "11.04",
+      "descItem": "Armazenamento, Depósito, Carga, Descarga, Arrumação E Guarda De Bens De Qualquer Espécie.",
+      "nbs": "1.0601.90.00",
+      "descNbs": "Serviços de manuseio de cargas não classificados em subposições anteriores",
+      "cTribNac": null,
+      "indop": "050101",
+      "cClassTrib": "000001",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Situações tributadas integralmente pelo IBS e CBS.",
+      "confiancaCTribNac": "baixa",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "110401",
+          "desc": "Armazenamento, depósito, guarda de bens de qualquer espécie."
+        },
+        {
+          "cTribNac": "110402",
+          "desc": "Carga, descarga, arrumação de bens de qualquer espécie."
+        }
+      ],
+      "situacoesEspeciais": []
+    },
+    {
+      "item": "11.04",
+      "descItem": "Armazenamento, Depósito, Carga, Descarga, Arrumação E Guarda De Bens De Qualquer Espécie.",
+      "nbs": "1.0602.10.00",
+      "descNbs": "Serviços de armazenagem frigorificada",
+      "cTribNac": null,
+      "indop": "050101",
+      "cClassTrib": "000001",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Situações tributadas integralmente pelo IBS e CBS.",
+      "confiancaCTribNac": "baixa",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "110401",
+          "desc": "Armazenamento, depósito, guarda de bens de qualquer espécie."
+        },
+        {
+          "cTribNac": "110402",
+          "desc": "Carga, descarga, arrumação de bens de qualquer espécie."
+        }
+      ],
+      "situacoesEspeciais": []
+    },
+    {
+      "item": "11.04",
+      "descItem": "Armazenamento, Depósito, Carga, Descarga, Arrumação E Guarda De Bens De Qualquer Espécie.",
+      "nbs": "1.0602.90.00",
+      "descNbs": "Serviços de armazenagem não classificados em subposições anteriores",
+      "cTribNac": null,
+      "indop": "050101",
+      "cClassTrib": "000001",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Situações tributadas integralmente pelo IBS e CBS.",
+      "confiancaCTribNac": "baixa",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "110401",
+          "desc": "Armazenamento, depósito, guarda de bens de qualquer espécie."
+        },
+        {
+          "cTribNac": "110402",
+          "desc": "Carga, descarga, arrumação de bens de qualquer espécie."
+        }
+      ],
+      "situacoesEspeciais": []
+    },
+    {
+      "item": "14.13",
+      "descItem": "Carpintaria e serralheria.",
+      "nbs": "1.0107.50.00",
+      "descNbs": "Serviços de carpintaria e de serralharia",
+      "cTribNac": "141301",
+      "indop": "050101",
+      "cClassTrib": "000001",
+      "cClassTribPadraoAssumido": false,
+      "nomeCClassTrib": "Situações tributadas integralmente pelo IBS e CBS.",
+      "confiancaCTribNac": "media",
+      "alternativasCTribNac": [
+        {
+          "cTribNac": "141301",
+          "desc": "Carpintaria."
+        },
+        {
+          "cTribNac": "141302",
+          "desc": "Serralheria."
+        }
+      ],
+      "situacoesEspeciais": []
+    }
+  ],
+  "cnaes": {
+    "11.04": [
+      {
+        "c": "5211-7/99",
+        "d": "Depósitos de mercadorias para terceiros, exceto armazéns gerais e guarda-móveis"
+      },
+      {
+        "c": "5212-5/00",
+        "d": "Carga e descarga"
+      },
+      {
+        "c": "5250-8/04",
+        "d": "Organização logística do transporte de carga"
+      }
+    ],
+    "07.02": [
+      {
+        "c": "4330-4/04",
+        "d": "Serviços de pintura de edifícios em geral"
+      },
+      {
+        "c": "4399-1/01",
+        "d": "Administração de obras"
+      },
+      {
+        "c": "4399-1/99",
+        "d": "Serviços especializados para construção não especificados anteriormente"
+      }
+    ],
+    "14.13": [
+      {
+        "c": "2542-0/00",
+        "d": "Fabricação de artigos de serralheria, exceto esquadrias"
+      },
+      {
+        "c": "3329-5/01",
+        "d": "Serviços de montagem de móveis de qualquer material"
+      },
+      {
+        "c": "4330-4/02",
+        "d": "Instalação de portas, janelas, tetos, divisórias e armários embutidos de qualquer material"
+      }
+    ]
+  },
+  "arquivosConsultadosSHA256": {
+    "rvgestaointeligente-nfse-rules.tgz": "d45661e4d23ed3a3ee7f08d54efde491a03ffce649727f5856cfe7eb420dfa85",
+    "JBCCONTABIL-codigosfiscais.tgz": "399c1cd54fd4d89aa2d661c6ea6fef8c3ededc0986252d65523ebf6791d3b77d",
+    "sinete-ibs-cbs-dados.tgz": "a662f4505d3e64d92092feba535d3edc7b7333833a2c4efe22937b6e912faa9b"
+  }
+}

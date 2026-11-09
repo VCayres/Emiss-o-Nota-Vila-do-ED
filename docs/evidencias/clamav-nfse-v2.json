@@ -1,0 +1,24 @@
+{
+  "date_utc": "2026-11-09T18:23:18.433878+00:00",
+  "scanner": "ClamAV 1.5.4",
+  "database": "28177 — 2026-11-08 06:23:52",
+  "official_image_manifest": "sha256:2a9be29239aea6c6fe17da9625f3c192f91974e61059d364e293f20277f931a3",
+  "exit_code": 0,
+  "archive_sha256": "5f22f649297f05f57acaf466eb69a6c9a074f8b7458a19ecb0ad4e1ac7fb5bfd",
+  "targets_sha256": {
+    "dist/vila-do-ed-scorm12.zip": "5f22f649297f05f57acaf466eb69a6c9a074f8b7458a19ecb0ad4e1ac7fb5bfd",
+    "dist/vila-do-ed-demonstracao.html": "5fa0df6fc181d045c30757ebb925d2ee221ace54615080633ba696d83837670f",
+    "app/app.js": "d311d109d0108751230581517c25bbefca107eb808016ebf4bd5dd6811769dd2",
+    "app/assets/vila.png": "3b5c422d8c3ac46d03425c8362ba4ed9f530e09f8a7f158c5d47c81de44df62e",
+    "app/classifications.js": "0cd6c7c0aa4701ade98972ff68999d5fcfd950ae09a2a8a384ab2ba1b474c37d",
+    "app/config.js": "b624eea5a781e44326ce25a529fa51c6588e1381f139f62102762505693780eb",
+    "app/index.html": "ec699f95e401249fd13f000ae6630c18fcbe010e08abe5743a94bf90789ed56e",
+    "app/rules.js": "801be8392965106743459f084c89ae6ed6d3debcaba63770888676b7ad93b560",
+    "app/scorm.js": "509354cff13556ea5572bf48f2cb2baf59f5dccdf6504eaf91658afe068dbeed",
+    "app/styles.css": "1283b7eb615736d4cc882c57ae6e55348a44ab699bade7e749db952a6397acce"
+  },
+  "network": "disabled during scan",
+  "mount": "read-only",
+  "log": "\n----------- SCAN SUMMARY -----------\nKnown viruses: 3628258\nEngine version: 1.5.4\nScanned directories: 2\nScanned files: 10\nInfected files: 0\nData scanned: 16.36 MiB\nData read: 13.34 MiB (ratio 1.23:1)\nTime: 22.903 sec (0 m 22 s)\nStart Date: 2026:11:09 18:22:55\nEnd Date:   2026:11:09 18:23:18\n",
+  "limits": "This result applies only to this engine, signature set and these bytes. It does not identify the previous Windows/Chrome detection or prove a false positive."
+}

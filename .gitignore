@@ -4,3 +4,4 @@ dist/*
 !dist/package-verification.json
 test-results/
 __pycache__/
+research/

@@ -1,0 +1,234 @@
+{
+  "consultadoEm": "2026-11-09",
+  "origemSecundaria": "@sinete/ibs-cbs-dados@2026.9.3",
+  "confirmacaoOficial": false,
+  "manifestoDeclaradoPeloFornecedor": {
+    "conhecidoEm": "2026-09-30",
+    "fontes": [
+      {
+        "data": "2026-09-30",
+        "id": "calculadora-offline-V0059",
+        "notas": "Habilitação de 820 para NFSe.",
+        "pins": {
+          "calculadora.tar.gz": "b59df3ff82d54142787d399d433a461ddd409f7a86aa889ed367b327a4467a66",
+          "calculadora/calculadora/db/calculadora-pro.db": "baa898c4c3c1bbe92ad832e221c4a2dad388136f95d66570869ba3d132894f9c",
+          "codigo-fonte-backend.zip": "9c10710b7f0747e8a229efb2de4fd1f7e04c28681a5e4cf825b671a969eeb827",
+          "dockerLayerDiffId": "sha256:520c3e924c0b78b131f5eb968a5eebae4a08f1ec07790c3eb3ca0b5e6546d76a",
+          "versaoApp": "1.5.4"
+        },
+        "sha256": "13870dea14ddf0b59754ee4375b2a98548fffcf80d7d99f2635325d0e18da2fa",
+        "tipo": "CALCULADORA_OFFLINE",
+        "titulo": "Calculadora de Tributos da Reforma Tributária do Consumo (RFB), módulo offline",
+        "url": "https://obs-13820-calcpr-apr.obsv3.br-df-1.hcs.serpro.gov.br/calculadora.zip",
+        "versao": "V0059"
+      },
+      {
+        "data": "2026-06-22",
+        "id": "it-2025.002-v1.60-cclasstrib",
+        "sha256": "1448cb63a41bdb67ea30b4e11f4dc200d9568542c6b9335b6cff87a4fd664654",
+        "tipo": "IT",
+        "titulo": "IT 2025.002 v1.60: Tabela de Classificação Tributária do IBS e CBS (CST e cClassTrib)",
+        "url": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=CMlTOCo8JuE=",
+        "versao": "v1.60"
+      },
+      {
+        "data": "2026-06-22",
+        "id": "it-2025.002-v1.60-ccredpres",
+        "sha256": "65f2461398b6c361921201f68621e9d351d8497ce1d47b15a1cd8e1a08caec52",
+        "tipo": "IT",
+        "titulo": "IT 2025.002 v1.60: Tabela de Código de Crédito Presumido do IBS e CBS (cCredPres)",
+        "url": "https://www.nfe.fazenda.gov.br/portal/exibirArquivo.aspx?conteudo=TpJZSmm9U1c=",
+        "versao": "v1.60"
+      }
+    ],
+    "sha256DoDataset": "f88dd50fda2b3b65368789d477fd0fc90b7586e2137b9f4c4c2ceca66016f8c2",
+    "tabelas": [
+      {
+        "nome": "cst",
+        "registros": 25,
+        "sha256": "4b32b80433e2dbceb48cc6943bc3eeb2c323c09a49b84843813c7184648b57d6"
+      },
+      {
+        "nome": "classTrib",
+        "registros": 193,
+        "sha256": "f52babe371505bad28125e04f98d5889024366f052a8e5190b008edf3550add2"
+      },
+      {
+        "nome": "tratamentos",
+        "registros": 43,
+        "sha256": "cf35e9b0af968ef5d9c983a0d18d7341fe077af9490918042f2c688df7268ec2"
+      },
+      {
+        "nome": "credPres",
+        "registros": 13,
+        "sha256": "142e4a9a251fddc4df138590aa7be88772c986ab91f2d6cb06e91d317ad4c6eb"
+      },
+      {
+        "nome": "aplicabilidadeNcm",
+        "registros": 1372,
+        "sha256": "af1a46961c66607904007df5a7309b73ec8c37f03fd5cd598cda3a4a04cae0db"
+      },
+      {
+        "nome": "aplicabilidadeNbs",
+        "registros": 118,
+        "sha256": "3150e43e44938c3b9d7bd725f5ff73d947850ac7b1d8886fa39f177d61b02685"
+      },
+      {
+        "nome": "anexos",
+        "registros": 821,
+        "sha256": "42e1ccd065d1bbc343d3d6b2971750f7e066f74374feb6fdeb89cc9cf026c717"
+      },
+      {
+        "nome": "nfseNbs",
+        "registros": 3196,
+        "sha256": "e5e3f13e1ac237e35b927adb29335bdd4589ea45adc37503b5fbee966cc8aef2"
+      },
+      {
+        "nome": "gruposDeAtores",
+        "registros": 17,
+        "sha256": "fba656056ca429deb8dbc1741241281fc278697cb9190d9522232b54926a16cd"
+      },
+      {
+        "nome": "atores",
+        "registros": 90,
+        "sha256": "f6099b30a969e8dd817f41b7de4801ec4c542336d707836e12943a55828491c0"
+      },
+      {
+        "nome": "atorClassTrib",
+        "registros": 146,
+        "sha256": "6a6e18ac598d2111c884390bc268d475485f3300425b62fd445847a4d7faa62a"
+      },
+      {
+        "nome": "tiposDfe",
+        "registros": 18,
+        "sha256": "32acd07054b0a15afdcc592658b386812da772788a6257a01a7eb1fd673fe5c1"
+      },
+      {
+        "nome": "redutorCompraGov",
+        "registros": 1,
+        "sha256": "26f63dc68ba2fe381acb2abef707115482418cb456af96c690a17b3d4323de3c"
+      },
+      {
+        "nome": "transferenciaCbs",
+        "registros": 6,
+        "sha256": "8d7d80840d6049b9d186d1695680a79dc46dd4198fd81b3978bb5b88668a347c"
+      }
+    ],
+    "versaoDoFormato": 2,
+    "versaoDosDados": "2026.09"
+  },
+  "correlacoesSelecionadas": [
+    {
+      "adquirenteExterior": false,
+      "cClassTrib": "200046",
+      "cIndOp": "020201",
+      "chave": "101054000:CBS_IBS:200046:2026-01-01:7.02:020201:1:0:2026-11-03",
+      "chaveClassTrib": "CBS_IBS:200046:2026-01-01",
+      "itemLc116": "7.02",
+      "nbs": "101054000",
+      "onerosa": true,
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-11-03"
+      }
+    },
+    {
+      "adquirenteExterior": false,
+      "cClassTrib": "000001",
+      "cIndOp": "050101",
+      "chave": "101075000:CBS_IBS:000001:2026-01-01:14.13:050101:1:0:2026-11-03",
+      "chaveClassTrib": "CBS_IBS:000001:2026-01-01",
+      "itemLc116": "14.13",
+      "nbs": "101075000",
+      "onerosa": true,
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-11-03"
+      }
+    },
+    {
+      "adquirenteExterior": false,
+      "cClassTrib": "000001",
+      "cIndOp": "050102",
+      "chave": "101075000:CBS_IBS:000001:2026-01-01:14.13:050102:1:0:2026-11-03",
+      "chaveClassTrib": "CBS_IBS:000001:2026-01-01",
+      "itemLc116": "14.13",
+      "nbs": "101075000",
+      "onerosa": true,
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-11-03"
+      }
+    },
+    {
+      "adquirenteExterior": false,
+      "cClassTrib": "000001",
+      "cIndOp": "050101",
+      "chave": "106019000:CBS_IBS:000001:2026-01-01:11.04:050101:1:0:2026-11-03",
+      "chaveClassTrib": "CBS_IBS:000001:2026-01-01",
+      "itemLc116": "11.04",
+      "nbs": "106019000",
+      "onerosa": true,
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-11-03"
+      }
+    },
+    {
+      "adquirenteExterior": false,
+      "cClassTrib": "000001",
+      "cIndOp": "050102",
+      "chave": "106019000:CBS_IBS:000001:2026-01-01:11.04:050102:1:0:2026-11-03",
+      "chaveClassTrib": "CBS_IBS:000001:2026-01-01",
+      "itemLc116": "11.04",
+      "nbs": "106019000",
+      "onerosa": true,
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-11-03"
+      }
+    }
+  ],
+  "classesSelecionadas": [
+    {
+      "codigo": "000001",
+      "cst": "000",
+      "nome": "Situações tributadas integralmente pelo IBS e CBS.",
+      "descricao": "Situações tributadas integralmente pelo IBS e CBS.",
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-01-01"
+      }
+    },
+    {
+      "codigo": "200045",
+      "cst": "200",
+      "nome": "Operações relacionadas a projetos de reabilitação urbana de zonas históricas e de áreas críticas de recuperação e reconversão urbanística",
+      "descricao": "Operações relacionadas a projetos de reabilitação urbana de zonas históricas e de áreas críticas de recuperação e reconversão urbanística",
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-01-01"
+      }
+    },
+    {
+      "codigo": "200046",
+      "cst": "200",
+      "nome": "Operações com bens imóveis",
+      "descricao": "Operações com bens imóveis",
+      "vigencia": {
+        "fim": null,
+        "inicio": "2026-01-01"
+      }
+    },
+    {
+      "codigo": "000001",
+      "cst": "000",
+      "nome": null,
+      "descricao": "Primeiro fornecimento a qualquer título de bem",
+      "vigencia": {
+        "fim": null,
+        "inicio": "2027-01-01"
+      }
+    }
+  ]
+}

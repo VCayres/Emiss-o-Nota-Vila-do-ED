@@ -1,33 +1,43 @@
-# Verificação da versão 2 — emissor NFS-e simplificado
+# Verificação da versão 3
 
-Data: 09/11/2026. Python 3.12, Node 24, Chromium e Playwright do ambiente. Aplicação estática, sem dependências de produção. Testes funcionais executados sobre `dist/site`, a mesma cópia de arquivos usada pelo empacotador do ZIP.
+Data: 09/11/2026. Aplicação estática em Python/Node/Chromium/Playwright disponíveis no ambiente. Os testes funcionais usam a cópia `dist/site` produzida pelo mesmo empacotador do ZIP.
 
-## Resultados
+## Funcionalidade e regressão
 
-- **22 testes unitários aprovados**: 14 de regras/retomada/classificações e 8 do adaptador SCORM. Nenhum caso desabilitado ou marcado como esperado falhar.
-- Os três contratos trazem cliente, local, descrição e valor corretos; classificações vazias são rejeitadas e as escolhas do cenário são aceitas. Valores brutos: Zé R$ 250,00; Tina R$ 1.800,00; Bené R$ 450,00.
-- Mudança de CNAE limpa CTN e NBS; mudança de CTN limpa NBS; CTN e NBS ficam desabilitados até a escolha anterior. As opções são limitadas ao estabelecimento e ao ramo selecionado.
-- CST muda as opções de cClassTrib e limpa a seleção anterior. Classificações incompatíveis e o benefício não caracterizado de reabilitação urbana são rejeitados.
-- Retenção ISS validada separadamente por contrato. Nenhuma alíquota ou valor líquido foi inventado. Campo monetário usa centavos inteiros; formatos negativos, exponenciais, inválidos e com milhar são rejeitados.
-- Desktop: erro de preço, NBS, CTN e retenção sinalizado por campo; cliente e escolhas independentes preservados; correção, conferência e emissão concluídas. Submissão repetida não duplica contribuição.
-- Celular 390 × 844: percurso da Tina emitido com retenção, sem transbordamento horizontal, com solicitação consultável durante o formulário.
-- Teclado: Enter inicia a seleção; Tab alcança todos os campos após liberação. Todos os inputs, selects e textarea têm rótulos associados. Há foco visível, mensagens associadas e status acessível. Não foi feita auditoria completa com leitor de tela real.
-- Demonstração: HTML único testado sobre HTTP local, incluindo imagem, estilos e novo catálogo de códigos incorporados; emissão completa do Bené. A política administrativa do navegador deste ambiente impede abrir `file://`; essa modalidade não foi homologada aqui.
-- Retomada SCORM em iframe: cliente e escolhas dependentes recuperados; pendências corrigidas; passed/100 e limites 0–100 após validação; localização e tempo de sessão registrados; suspend_data abaixo de 4096 bytes.
-- Falha de commit simulada produz aviso e nova tentativa funciona. Reabrir, explorar outro estabelecimento e emitir outra nota não reduz aprovação nem cria contribuição adicional. Finish executado uma vez.
-- Migração de estado da versão 1 preserva uma aprovação/contribuição anterior e reinicia os formulários no fluxo de serviços. A nota antiga não é apresentada como NFS-e.
-- **Zero exceções JavaScript e zero solicitações externas** no teste funcional concluído. Um primeiro teste falhou porque sua preparação de armazenamento tentava acessar localStorage de uma página sem origem; a preparação foi limitada a páginas HTTP e o teste completo foi reexecutado com sucesso. A aplicação não teve sua validação enfraquecida para aprovar o teste.
-- Análise antivírus final do ZIP SCORM, HTML único e fontes: ClamAV 1.5.4, base 28177 de 08/11/2026, 10 arquivos examinados, 0 infectados, saída 0. Evidências em `docs/SEGURANCA-DOWNLOAD.md`.
-- ZIP verificado: CRC válido, manifesto na raiz, namespaces IMS/ADL SCORM 1.2, uma organização/item/SCO, entrada `index.html`, oito arquivos de aplicação declarados (incluindo `classifications.js`) mais manifesto. Nenhuma URL externa de execução ou caminho de travessia. Não houve validação XSD independente ou certificação ADL.
+**27 testes unitários aprovados**, sem casos desabilitados: 19 de regras/retomada e 8 do adaptador SCORM.
 
-Evidências geradas em `test-results/browser-report.json`, `desktop-opening.png`, `desktop-form.png`, `desktop-receipt.png` e `mobile-form.png`. `dist/package-verification.json` registra o SHA-256 do pacote. O pacote editável inclui as evidências disponíveis no momento do build.
+- Comércio do Zé: catálogo com os sete produtos dos prints. Pedido avaliado de concreto/tábua, total R$ 232,50. Produto fora do pedido (inclusive ficcional), repetição, quantidade, unidade, preço e total incorretos rejeitados. Correção mantém o resto do trabalho.
+- Pedreira da Tina: categoria de **indústria**, produção de concreto a partir de pedra e venda de produto próprio. CNAE de referência industrial, só concreto disponível no pedido, total R$ 228,00. Não há prestação de concretagem, CTN, NBS ou retenção de ISS sobre essa venda.
+- Serralheria do Bené: processamento de madeira do tomador para preparar tábuas, serviço de R$ 150,00. Mantida a identificação Serralheiro; retiradas as peças metálicas da hipótese anterior. CNAE, CTN, NBS e retenção validados conforme o contrato didático, sujeitos à revisão fiscal documentada.
+- CTN libera após CNAE; NBS após CTN. Mudar antecedente limpa dependentes. Dados fixos e valor permanecem.
+- Os formulários de mercadorias não contêm dados de retenção/CTN/NBS, nem mesmo ocultos no estado salvo. CST/cClassTrib deixaram de ser requisito de qualquer percurso. Retomada sanitiza campos obsoletos.
+- Valores em centavos inteiros; formatos monetários inválidos e quantidades fora de 1–9999 rejeitados. Vendas podem ter os itens reordenados, sem omissão ou duplicação.
+- Uma emissão correta basta. Submissão repetida e exploração de outro estabelecimento não duplicam contribuição.
 
-## Limites
+## Tela e acessibilidade
 
-- Importação no Moodle real e relatórios da instância de destino não foram executados por falta de acesso a um Moodle fornecido. A integração foi testada com API SCORM 1.2 simulada em iframe.
-- Códigos e hipóteses fiscais são candidatos de fontes secundárias; confirmação oficial vigente e revisão profissional pendentes. Ver `CONTEUDO-FISCAL.md`, incluindo a pendência específica de CNAE do Bené e os requisitos de obra de Tina omitidos no recorte.
-- A arte adaptada continua sujeita à aprovação do responsável pela identidade visual.
-- Qualquer resultado antivírus vale para os hashes, motor e base registrados em `SEGURANCA-DOWNLOAD.md`; não é certificação de ausência de malware ou diagnóstico do bloqueio original do Chrome.
+- A arte da abertura foi preservada. Os retratos novos têm transparência verdadeira, com margens para cabeça e pés em cada personagem. PNG RGBA de 1536 × 1024, separado em janelas SVG; nenhum pixel do arquivo foi editado por scripts locais.
+- Inspeção visual detectou fragmentos dos vizinhos nas faixas laterais de ajuste do SVG. Foram adicionadas máscaras explícitas por personagem e o teste completo foi repetido com sucesso. A versão final mostra somente uma figura completa por cartão.
+- Desktop e celular 390 × 844: figuras de corpo inteiro, cartões responsivos, sem transbordamento horizontal da página. Solicitação consultável durante o formulário.
+- Teclado por Enter/Tab alcança seleção e campos; inputs, selects e textarea têm labels. Foco visível, mensagens por campo e status acessível. Não foi feita auditoria completa com leitor de tela real.
+- HTML único testado por HTTP local, com a arte e a folha transparente incorporadas como dados. Navegação e emissão do serviço funcionaram sem arquivos externos. A política do navegador deste ambiente bloqueia `file://`; essa modalidade não foi homologada aqui.
+- Zero exceções JavaScript e zero solicitações externas no teste concluído.
+
+## SCORM e empacotamento
+
+- Iframe com API SCORM simulada: initialize/incomplete, retomada parcial de venda industrial, correção, passed/100, limites 0–100, localização e tempo de sessão. Falha de commit visível e nova tentativa bem-sucedida.
+- Reabrir e explorar serviço após venda aprovada preserva a aprovação e a primeira contribuição. Finish executado uma vez. Suspend_data abaixo de 4096 bytes.
+- Migração das versões 1 e 2 preserva conclusões; notas antigas incompatíveis não são apresentadas como novas notas válidas.
+- ZIP com manifesto XML na raiz, uma organização/item/SCO, namespaces IMS e ADL SCORM 1.2, entrada `index.html`; nove arquivos de aplicação (incluindo duas imagens) mais manifesto, todos declarados. CRC, referências e caminhos verificados. Sem URL externa de execução ou caminho de travessia.
+- Não houve validação XSD independente ou certificação ADL. Homologação em um Moodle real permanece pendente por falta de acesso fornecido.
+
+Evidências: `test-results/browser-report.json`, capturas desktop/mobile, `docs/evidencias/selecionar-v3.png` e `docs/evidencias/browser-v3.json`. SHA-256 do pacote em `dist/package-verification.json`. O ZIP editável inclui fontes, documentação e evidências disponíveis no build.
+
+O build final foi examinado com ClamAV 1.5.4 e base 28177 de 08/11/2026: 11 arquivos, 0 infectados, saída 0. O resultado antivírus de outra versão não é reaproveitado como prova de segurança de novos bytes; consulte os registros por versão em `SEGURANCA-DOWNLOAD.md`.
+
+## Conteúdo fiscal: limite da verificação
+
+Os códigos de atividade e serviço são candidatos de fontes secundárias; confirmação oficial e revisão especializada permanecem pendentes. Foram verificados nomes/estrutura de novos campos de IBS/CBS em cópia pública de esquemas da NF-e/NFC-e, sem alegar obrigatoriedade universal por regime/data. Veja `CONTEUDO-FISCAL.md` e `REFORMA-COMERCIO-INDUSTRIA.md`.
 
 ## Reproduzir
 
@@ -37,4 +47,4 @@ npm run build
 npm run test:browser
 ```
 
-Na raiz do checkout. O teste funcional abre e fecha seu próprio servidor local. Servidor/Chromium podem exigir a execução suportada fora da sandbox local; preservar proxy, TLS e política de rede.
+Na raiz do checkout. O teste funcional abre e fecha servidor temporário próprio. Sockets, Chromium e Docker podem exigir execução suportada fora da sandbox; preserve proxy, TLS e política de rede.

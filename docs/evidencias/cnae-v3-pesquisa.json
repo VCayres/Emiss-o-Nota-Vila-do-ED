@@ -1,0 +1,166 @@
+{
+  "source": "https://github.com/GuiCoimbraDeveloper/Tabela-CNAE-2.3",
+  "status": "fonte secundária de CNAE; não é tabela de códigos da reforma",
+  "rows": [
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "16",
+      "FABRICAÇÃO DE PRODUTOS DE MADEIRA",
+      "16.2",
+      "Fabricação de produtos de madeira, cortiça e material trançado, exceto móveis",
+      "1622-6/01",
+      "Fabricação de casas de madeira pré-fabricadas"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "16",
+      "FABRICAÇÃO DE PRODUTOS DE MADEIRA",
+      "16.2",
+      "Fabricação de produtos de madeira, cortiça e material trançado, exceto móveis",
+      "1622-6/02",
+      "Fabricação de esquadrias de madeira e de peças de madeira para instalações industriais e comerciais"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "16",
+      "FABRICAÇÃO DE PRODUTOS DE MADEIRA",
+      "16.2",
+      "Fabricação de produtos de madeira, cortiça e material trançado, exceto móveis",
+      "1622-6/99",
+      "Fabricação de outros artigos de carpintaria para construção"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "23",
+      "FABRICAÇÃO DE PRODUTOS DE MINERAIS NÃO-METÁLICOS",
+      "23.3",
+      "Fabricação de artefatos de concreto, cimento, fibrocimento, gesso e materiais semelhantes",
+      "2330-3/01",
+      "Fabricação de estruturas pré-moldadas de concreto armado, em série e sob encomenda"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "23",
+      "FABRICAÇÃO DE PRODUTOS DE MINERAIS NÃO-METÁLICOS",
+      "23.3",
+      "Fabricação de artefatos de concreto, cimento, fibrocimento, gesso e materiais semelhantes",
+      "2330-3/02",
+      "Fabricação de artefatos de cimento para uso na construção"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "23",
+      "FABRICAÇÃO DE PRODUTOS DE MINERAIS NÃO-METÁLICOS",
+      "23.3",
+      "Fabricação de artefatos de concreto, cimento, fibrocimento, gesso e materiais semelhantes",
+      "2330-3/03",
+      "Fabricação de artefatos de fibrocimento para uso na construção"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "23",
+      "FABRICAÇÃO DE PRODUTOS DE MINERAIS NÃO-METÁLICOS",
+      "23.3",
+      "Fabricação de artefatos de concreto, cimento, fibrocimento, gesso e materiais semelhantes",
+      "2330-3/04",
+      "Fabricação de casas pré-moldadas de concreto"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "23",
+      "FABRICAÇÃO DE PRODUTOS DE MINERAIS NÃO-METÁLICOS",
+      "23.3",
+      "Fabricação de artefatos de concreto, cimento, fibrocimento, gesso e materiais semelhantes",
+      "2330-3/05",
+      "Preparação de massa de concreto e argamassa para construção"
+    ],
+    [
+      "C",
+      "INDÚSTRIAS DE TRANSFORMAÇÃO",
+      "23",
+      "FABRICAÇÃO DE PRODUTOS DE MINERAIS NÃO-METÁLICOS",
+      "23.3",
+      "Fabricação de artefatos de concreto, cimento, fibrocimento, gesso e materiais semelhantes",
+      "2330-3/99",
+      "Fabricação de outros artefatos e produtos de concreto, cimento, fibrocimento, gesso e materiais\nsemelhantes"
+    ],
+    [
+      "G",
+      "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+      "47",
+      "COMÉRCIO VAREJISTA",
+      "47.4",
+      "Comércio varejista de material de construção",
+      "4744-0/01",
+      "Comércio varejista de ferragens e ferramentas"
+    ],
+    [
+      "G",
+      "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+      "47",
+      "COMÉRCIO VAREJISTA",
+      "47.4",
+      "Comércio varejista de material de construção",
+      "4744-0/02",
+      "Comércio varejista de madeira e artefatos"
+    ],
+    [
+      "G",
+      "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+      "47",
+      "COMÉRCIO VAREJISTA",
+      "47.4",
+      "Comércio varejista de material de construção",
+      "4744-0/03",
+      "Comércio varejista de materiais hidráulicos"
+    ],
+    [
+      "G",
+      "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+      "47",
+      "COMÉRCIO VAREJISTA",
+      "47.4",
+      "Comércio varejista de material de construção",
+      "4744-0/04",
+      "Comércio varejista de cal, areia, pedra britada, tijolos e telhas"
+    ],
+    [
+      "G",
+      "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+      "47",
+      "COMÉRCIO VAREJISTA",
+      "47.4",
+      "Comércio varejista de material de construção",
+      "4744-0/05",
+      "Comércio varejista de materiais de construção não especificados anteriormente"
+    ],
+    [
+      "G",
+      "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+      "47",
+      "COMÉRCIO VAREJISTA",
+      "47.4",
+      "Comércio varejista de material de construção",
+      "4744-0/06",
+      "Comércio varejista de pedras para revestimento"
+    ],
+    [
+      "G",
+      "COMÉRCIO; REPARAÇÃO DE VEÍCULOS AUTOMOTORES E MOTOCICLETAS",
+      "47",
+      "COMÉRCIO VAREJISTA",
+      "47.4",
+      "Comércio varejista de material de construção",
+      "4744-0/99",
+      "Comércio varejista de materiais de construção em geral"
+    ]
+  ]
+}

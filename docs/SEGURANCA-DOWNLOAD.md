@@ -68,3 +68,22 @@ SHA-256 do novo ZIP SCORM:
 ```
 
 Evidências: [log final](evidencias/clamav-nfse-v2.log) e [relatório com hashes dos arquivos examinados](evidencias/clamav-nfse-v2.json). Os hashes foram novamente conferidos após o empacotamento final. O resultado vale para esse motor/base e esses arquivos; não comprova falso positivo do alerta original nem ausência universal de malware.
+
+
+## Versão 3 — comércio, indústria, serviço e figuras transparentes, 09/11/2026
+
+O novo build foi alterado para atender ao recorte de operações e às imagens pedido pelo usuário. As análises das versões anteriores foram preservadas como histórico e não usadas como prova para esses novos bytes.
+
+- ClamAV **1.5.4**, base **28177, 08/11/2026 06:23:52 UTC**, imagem oficial stable com manifesto amd64 `sha256:2a9be29239aea6c6fe17da9625f3c192f91974e61059d364e293f20277f931a3`.
+- Contêiner sem rede, sem capacidades adicionais, arquivos somente de leitura e temporários separados. Nenhum código do pacote foi executado pelo scanner, e nenhum arquivo foi enviado a serviço externo de análise.
+- Alvos: ZIP SCORM, HTML único e nove arquivos de aplicação, incluindo a nova imagem PNG transparente. O ZIP editável completo é gerado depois para incluir os relatórios e não foi alvo desta análise.
+- **11 arquivos examinados, 2 diretórios, 0 infectados, saída 0**, sem avisos/erros; 25,33 MiB analisados; 24,840 segundos.
+- Hashes registrados antes e conferidos após a execução e o build final.
+
+SHA-256 do ZIP SCORM da versão 3:
+
+```text
+e7e13cdec29acbc13506b5edda6e668df44134df111ec600425732a180d2ae93
+```
+
+Evidências: [log](evidencias/clamav-v3.log) e [relatório e hashes](evidencias/clamav-v3.json). O resultado é limitado a esse motor/base e a esses arquivos e não é certificação de ausência de malware ou diagnóstico do alerta original do Chrome. Não houve alteração de formato para contornar uma detecção.

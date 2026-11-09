@@ -1,12 +1,16 @@
 # Vila do ED · Semana Tributária 2026
 
-> **Histórico do download:** houve um bloqueio pelo Chrome na versão 1. O [relatório de segurança](docs/SEGURANCA-DOWNLOAD.md) separa o alerta original e as análises realizadas por versão. A versão 2 foi examinada com ClamAV 1.5.4 e base 28177 de 08/11/2026: 10 arquivos, 0 infectados, saída 0. Uma análise vale apenas para os hashes e assinaturas registrados, sem esclarecer o alerta antigo do Chrome.
+> **Histórico do download:** houve um bloqueio pelo Chrome na versão 1. O [relatório de segurança](docs/SEGURANCA-DOWNLOAD.md) separa o alerta original e as análises realizadas por versão. A versão 3 foi examinada com ClamAV 1.5.4 e base 28177 de 08/11/2026: 11 arquivos, 0 infectados, saída 0. Uma análise vale apenas para os hashes e assinaturas registrados, sem esclarecer o alerta antigo do Chrome.
 
 Simulador educacional funcional, estático e offline, com três percursos e um SCO SCORM 1.2. Uma nota validada conclui a tentativa. Explorar outros estabelecimentos não duplica a contribuição nem reduz a aprovação.
 
-**Versão 2: emissor simplificado de NFS-e de serviços.** Cliente, local, discriminação e valor vêm preenchidos conforme o personagem. O participante escolhe CNAE → CTN → NBS, retenção do ISS e CST/cClassTrib de IBS/CBS. Os códigos são candidatos reais encontrados em fontes secundárias, com [proveniência e pendências de revisão](docs/CONTEUDO-FISCAL.md). As consultas oficiais seguem bloqueadas pela rede; não há enquadramento homologado, alíquotas ou apuração. A aprovação pedagógica significa correspondência com o cenário, não certificação fiscal.
+**Versão 3: comércio, indústria e serviço, conforme os prints da Vila do ED.** Zé vende os produtos de seu catálogo; Tina é indústria produtora e vendedora de concreto na Pedreira; Bené processa madeira do cliente para tábuas na Serralheria. Cliente e pedido vêm preenchidos. As vendas exercitam produtos, quantidades e preços; apenas o serviço exercita CNAE → CTN → NBS e a pergunta de retenção do ISS.
 
-[Ver uma captura do emissor corrigido](docs/evidencias/nfse-v2.png).
+As perguntas de CST/cClassTrib foram retiradas de todos os percursos, inclusive da validação. Isso é um recorte pedagógico: **existem novos campos de IBS/CBS na NF-e/NFC-e de comércio e indústria**. Confira a [pesquisa técnica e seus limites](docs/REFORMA-COMERCIO-INDUSTRIA.md). Os portais oficiais continuam bloqueados pelo ambiente; não foi confirmado cronograma universal de obrigatoriedade em novembro de 2026. Não foram inventados NCM, CFOP, alíquotas ou enquadramentos dos itens ficcionais.
+
+A tela inicial mantém a arte da vila. Na escolha, os três personagens aparecem de corpo inteiro, separados do fundo, em recortes assistidos por IA das referências fornecidas. [Ver seleção de personagens](docs/evidencias/selecionar-v3.png).
+
+Os códigos de referência ainda são candidatos para revisão profissional; veja a [documentação fiscal](docs/CONTEUDO-FISCAL.md), especialmente a hipótese de serviço do Bené. A aprovação pedagógica significa correspondência com o pedido, não certificação fiscal.
 
 ## Usar
 
@@ -30,7 +34,7 @@ O armazenamento local é exclusivo da demonstração. Com uma API SCORM detectad
 
 ## Resultados e dados
 
-A versão 2 preserva aprovações anteriores na retomada. Um formulário antigo de mercadorias é reiniciado no novo fluxo de serviços, sem converter sua nota em NFS-e. O SCO envia `cmi.core.lesson_status`, nota, limites 0–100, localização, tempo de sessão e `cmi.suspend_data`. Neste último ficam `v`, `step`, `merchant`, `form`, `completed`, `first` (primeiro percurso validado) e `contributions` (0 ou 1 por tentativa), além de `legacyCompleted` quando houve conclusão na versão anterior. O tempo é acumulado pelo LMS a partir das sessões, sem cronômetro eliminatório. O pacote não faz chamadas externas, não coleta dados pessoais, não cria ranking, não gera chave, protocolo ou QR Code fiscal.
+A versão 3 preserva aprovações das versões 1 e 2 na retomada. Formulários anteriores incompatíveis são reiniciados na seleção, sem transformar vendas em serviços ou perder conclusões já alcançadas. O SCO envia `cmi.core.lesson_status`, nota, limites 0–100, localização, tempo de sessão e `cmi.suspend_data`. Neste último ficam `v`, `step`, `merchant`, `form`, `completed`, `first` (primeiro percurso validado) e `contributions` (0 ou 1 por tentativa), além de `legacyCompleted` quando houve conclusão na versão anterior. O tempo é acumulado pelo LMS a partir das sessões, sem cronômetro eliminatório. O pacote não faz chamadas externas, não coleta dados pessoais, não cria ranking, não gera chave, protocolo ou QR Code fiscal.
 
 O responsável pode consolidar aprovações nos relatórios do Moodle; os dados de retomada podem ser consultados no acompanhamento SCORM conforme permissões e versão do Moodle. Para contar pessoas, consolide uma aprovação por participante, não todas as tentativas ou reaberturas. O SCO não conhece totais globais e não envia eventos para um contador externo.
 

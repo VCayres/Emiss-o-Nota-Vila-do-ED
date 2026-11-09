@@ -1,71 +1,22 @@
-const {test} = require('node:test');
-const assert = require('node:assert/strict');
-const C = require('../app/config.js');
-const F = require('../app/classifications.js');
-const R = require('../app/rules.js');
-function filled(id) { const f=R.blank(id); Object.assign(f,C.merchants[id].order.expected,{issWithheld:C.merchants[id].order.retention,reviewed:true}); return f; }
-for(const id of Object.keys(C.merchants)) {
-  test(`${id}: fixed client, description and price; empty classifications fail and correct scenario passes`,()=>{
-    const f=R.blank(id),o=C.merchants[id].order;
-    assert.equal(f.recipient,o.recipient);assert.equal(f.description,o.description);assert.equal(R.cents(f.amount),o.amount);
-    assert.ok(Object.keys(R.validate(id,f)).length>=6);assert.deepEqual(R.validate(id,filled(id)),{});
-  });
-}
-test('decimal precision and invalid money formats',()=>{
-  assert.equal(R.cents('19,75'),1975);assert.equal(R.cents('1800.00'),180000);assert.equal(R.cents('0,10')*3,30);
-  for(const x of ['1e3','-1','1.234,56','1,234','','Infinity','.1']) assert.equal(R.cents(x),null);
-});
-test('classifications outside the merchant or request cannot emit',()=>{
-  const f=filled('ze');f.cnae='4399199';assert.ok(R.validate('ze',f).cnae);
-  f.cnae='5212500';f.ctn='070202';assert.ok(R.validate('ze',f).ctn);
-  f.ctn='110402';f.nbs='106011000';assert.ok(R.validate('ze',f).nbs);
-  f.nbs='999999999';assert.ok(R.validate('ze',f).nbs);
-});
-test('CNAE→CTN→NBS dependencies reset downstream selections and preserve fixed contract/value',()=>{
-  let f=filled('ze');f=R.update('ze',f,'cnae','5211799');assert.equal(f.ctn,'');assert.equal(f.nbs,'');assert.equal(f.amount,'250,00');assert.equal(f.reviewed,false);
-  f=R.update('ze',f,'ctn','110401');assert.deepEqual(R.nbsOptions('ze',f),['106029000','106021000']);
-  f=R.update('ze',f,'nbs','106029000');f=R.update('ze',f,'ctn','110402');assert.equal(f.nbs,'');assert.ok(!R.nbsOptions('ze',f).includes('106029000'));
-  assert.deepEqual(R.ctnOptions('ze',R.blank('ze')),[]);assert.deepEqual(R.nbsOptions('ze',R.blank('ze')),[]);
-});
-test('CST change resets class and incompatible class is rejected',()=>{
-  let f=filled('tina');f=R.update('tina',f,'cst','000');assert.equal(f.classTrib,'');assert.deepEqual(R.classOptions(f),['000001']);
-  f.classTrib='200046';assert.ok(R.validate('tina',f).classTrib);f=filled('tina');f.classTrib='200045';assert.ok(R.validate('tina',f).classTrib);
-});
-test('retention is scenario-specific, not a property assigned to CNAE',()=>{
-  for(const id of ['ze','tina','bene']){const f=filled(id);f.issWithheld=f.issWithheld==='sim'?'nao':'sim';assert.ok(R.validate(id,f).issWithheld);}
-  assert.equal(C.merchants.tina.order.retention,'sim');assert.equal(C.merchants.ze.order.retention,'nao');
-});
-test('value, fixed contract fields and final confirmation are independently validated',()=>{
-  for(const [key,value] of [['amount','0'],['amount','250,01'],['recipient','Other client'],['description','Other service'],['destination','Other place'],['reviewed',false]]){
-    const f=filled('ze');f[key]=value;assert.ok(R.validate('ze',f)[key],key);
-  }
-});
-test('resume sanitizes fixed data and impossible dependent codes',()=>{
-  const f=filled('ze');f.recipient='<script>bad</script>';f.ctn='070202';f.nbs='101054000';const clean=R.clean('ze',f);
-  assert.equal(clean.recipient,C.merchants.ze.order.recipient);assert.equal(clean.ctn,'');assert.equal(clean.nbs,'');
-});
-test('v2 resume keeps a validated first contribution, and rejects a forged receipt',()=>{
-  const f=filled('ze'),saved={v:2,step:'receipt',merchant:'ze',form:f,first:{merchant:'ze',form:f},completed:true,contributions:1};
-  let s=R.restore(saved,false);assert.equal(s.step,'receipt');assert.equal(s.completed,true);assert.equal(s.contributions,1);
-  saved.form={...f,ctn:'070202'};s=R.restore(saved,false);assert.equal(s.step,'form');assert.equal(s.completed,true);
-});
-test('previous version approval survives migration and subsequent reentry',()=>{
-  let s=R.restore({v:1,completed:true,contributions:1,first:{merchant:'bene',form:{}}},false);
-  assert.equal(s.v,2);assert.equal(s.completed,true);assert.equal(s.legacyCompleted,true);assert.equal(s.contributions,1);
-  s=R.restore(s,false);assert.equal(s.completed,true);assert.equal(s.first.legacy,true);
-  s=R.restore({v:1,completed:false,contributions:0},false);assert.equal(s.completed,false);
-});
-test('malformed suspend data never overrides LMS approval or crashes',()=>{
-  for(const bad of [null,{},[],{v:2,merchant:'__proto__',first:{merchant:'constructor'}},{v:2,merchant:'ze',form:null,step:'receipt'}]){
-    const s=R.restore(bad,true);assert.equal(s.completed,true);assert.equal(s.contributions,1);
-  }
-});
-test('candidate provenance is explicit and original products are not relabeled as services',()=>{
-  assert.equal(F.officialVerified,false);assert.equal(C.originalCatalog.length,7);assert.ok(C.originalCatalog.includes('Poção de Cura Menor'));
-  const evidence=require('../docs/evidencias/candidatos-nfse.json');
-  for(const m of Object.values(C.merchants)){
-    const e=m.order.expected,code=F.nbs[e.nbs][0];assert.ok(evidence.correlacoes.some(row=>row.nbs===code));
-    assert.ok(Object.values(evidence.cnaes).flat().some(row=>row.c===F.cnaes[e.cnae][0]));
-  }
-});
+const {test}=require('node:test');
+const assert=require('node:assert/strict');
+const C=require('../app/config.js'),F=require('../app/classifications.js'),R=require('../app/rules.js');
+function filled(id){const f=R.blank(id),m=C.merchants[id];if(R.isService(id))Object.assign(f,m.order.expected,{issWithheld:m.order.retention});else f.lines=m.order.items.map(l=>({product:l.product,quantity:String(l.quantity),unit:'UD',price:(C.products[l.product].price/100).toFixed(2)}));f.reviewed=true;return f;}
+for(const id of Object.keys(C.merchants))test(`${id}: fixed recipient, requested items or service, blank form blocked and correct invoice accepted`,()=>{const f=R.blank(id);assert.equal(f.recipient,C.merchants[id].order.recipient);assert.ok(Object.keys(R.validate(id,f)).length>0);assert.deepEqual(R.validate(id,filled(id)),{});});
+test('commerce, industry and service are separate operations',()=>{assert.equal(C.merchants.ze.kind,'goods');assert.equal(C.merchants.tina.kind,'goods');assert.match(C.merchants.tina.category,/Indústria/);assert.equal(C.merchants.tina.cnae,'2330305');assert.equal(C.merchants.bene.kind,'service');assert.equal(C.merchants.bene.shop,'Serralheria');assert.equal(C.merchants.ze.shop,'Comércio');assert.equal(C.merchants.tina.shop,'Pedreira');});
+test('goods forms never contain service classifications or withholding data',()=>{for(const id of ['ze','tina']){const f=R.blank(id);for(const key of ['ctn','nbs','issWithheld','amount','cst','classTrib'])assert.equal(Object.hasOwn(f,key),false,key);assert.deepEqual(R.ctnOptions(id,f),[]);assert.deepEqual(R.nbsOptions(id,f),[]);}});
+test('tax reform questions removed from active forms and requirements',()=>{assert.equal(F.csts,undefined);assert.equal(F.classes,undefined);for(const id of ['ze','tina','bene']){const f=filled(id);assert.equal('cst' in f,false);assert.equal('classTrib' in f,false);assert.deepEqual(R.validate(id,f),{});}});
+test('Zé retains all seven original products; Tina only sells concrete',()=>{assert.equal(C.merchants.ze.catalog.length,7);assert.ok(C.merchants.ze.catalog.includes('pocao'));assert.deepEqual(C.merchants.tina.catalog,['concreto']);assert.equal(C.originalCatalog.length,7);});
+test('exact integer-cent calculations and lexical checks',()=>{assert.equal(R.cents('19,75'),1975);assert.equal(R.cents('0.10')*3,30);for(const x of ['1e3','-1','1.234,56','1,234','','Infinity','.1'])assert.equal(R.cents(x),null);for(const x of ['0','-1','1.5','01','1e2','10000'])assert.equal(R.quantity(x),null);assert.equal(R.totals(filled('ze').lines).total,23250);assert.equal(R.totals(filled('tina').lines).total,22800);});
+test('wrong or repeated products, fictional products, quantities, unit and price rejected',()=>{for(const [mutate,key] of [[f=>f.lines[0].product='pocao','product-0'],[f=>f.lines[0].product='tabua','product-1'],[f=>f.lines[0].quantity='5','quantity-0'],[f=>f.lines[0].unit='m3','unit-0'],[f=>f.lines[0].price='28,51','price-0']]){const f=filled('ze');mutate(f);assert.ok(R.validate('ze',f)[key],key);}const f=filled('tina');f.lines[0].product='tabua';assert.ok(R.validate('tina',f)['product-0']);});
+test('order lines can be rearranged but not omitted',()=>{const f=filled('ze');f.lines.reverse();assert.deepEqual(R.validate('ze',f),{});f.lines.pop();assert.ok(R.validate('ze',f).lines);});
+test('editing a goods item clears confirmation and keeps independent work',()=>{const f=filled('ze');const next=R.updateLine('ze',f,0,'quantity','3');assert.equal(next.reviewed,false);assert.equal(next.lines[1].product,'tabua');assert.equal(f.lines[0].quantity,'4');assert.equal(next.recipient,f.recipient);});
+test('Bené processes wood for boards, not metal; input amount does not define yield',()=>{assert.match(C.merchants.bene.order.description,/madeira/);assert.match(C.merchants.bene.order.description,/tábuas/);assert.match(C.merchants.bene.context,/2 unidades.*5 segundos/);assert.equal(C.merchants.bene.order.expected.ctn,'141301');assert.equal(C.merchants.bene.order.amount,15000);});
+test('service cascading choices reset dependents while preserving client and amount',()=>{let f=filled('bene');f=R.update('bene',f,'cnae','3329501');assert.equal(f.ctn,'');assert.equal(f.nbs,'');assert.equal(f.reviewed,false);assert.equal(f.amount,'150,00');f=R.update('bene',f,'ctn','141302');assert.deepEqual(R.nbsOptions('bene',f),['101075000']);assert.ok(R.validate('bene',f).ctn);});
+test('service classification and ISS retention independently enforced',()=>{for(const [key,v] of [['cnae','4330402'],['ctn','141302'],['nbs','999999999'],['issWithheld','sim'],['amount','150,01']]){const f=filled('bene');f[key]=v;assert.ok(R.validate('bene',f)[key],key);}});
+test('recipient, description and confirmation remain required',()=>{for(const id of ['ze','tina','bene'])for(const [key,v] of [['recipient','Wrong client'],['destination','Wrong place'],['description','Wrong operation'],['reviewed',false]]){const f=filled(id);f[key]=v;assert.ok(R.validate(id,f)[key]);}});
+test('resume strips obsolete tax/service fields and restores fixed registration',()=>{let f=filled('ze');f.issWithheld='sim';f.ctn='141301';f.cst='000';f.recipient='<script>x</script>';let clean=R.clean('ze',f);assert.equal(clean.issWithheld,undefined);assert.equal(clean.ctn,undefined);assert.equal(clean.cst,undefined);assert.equal(clean.recipient,C.merchants.ze.order.recipient);f=filled('bene');f.classTrib='000001';clean=R.clean('bene',f);assert.equal(clean.classTrib,undefined);});
+test('v3 resumes validated receipts, invalid current edits do not remove prior completion',()=>{const f=filled('ze'),saved={v:3,step:'receipt',merchant:'ze',form:f,first:{merchant:'ze',form:f},completed:true,contributions:1};let s=R.restore(saved,false);assert.equal(s.step,'receipt');assert.equal(s.completed,true);saved.form={...f,lines:[]};s=R.restore(saved,false);assert.equal(s.step,'form');assert.equal(s.completed,true);});
+test('v1 and v2 completions preserved, incomplete prior attempts restart without false approval',()=>{for(const v of [1,2]){let s=R.restore({v,completed:true,contributions:1,first:{merchant:'tina'}},false);assert.equal(s.v,3);assert.equal(s.completed,true);assert.equal(s.legacyCompleted,true);s=R.restore(s,false);assert.equal(s.completed,true);assert.equal(s.contributions,1);assert.equal(R.restore({v,completed:false,contributions:0},false).completed,false);}});
+test('malformed data never crashes or removes LMS approval',()=>{for(const bad of [null,{},[],{v:3,merchant:'__proto__',first:{merchant:'constructor'}},{v:3,merchant:'ze',form:null,step:'receipt'}]){const s=R.restore(bad,true);assert.equal(s.completed,true);assert.equal(s.contributions,1);}});
 module.exports={filled};

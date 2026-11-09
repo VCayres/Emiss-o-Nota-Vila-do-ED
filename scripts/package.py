@@ -21,15 +21,18 @@ def tag(name):
 def build():
     DIST.mkdir(exist_ok=True)
     # Downloadable standalone demo: all runtime assets embedded in one HTML file.
-    image_uri = 'data:image/png;base64,' + base64.b64encode((APP / 'assets/vila.png').read_bytes()).decode('ascii')
-    css = (APP / 'styles.css').read_text().replace("url('./assets/vila.png')", "url('" + image_uri + "')")
+    assets = {'./assets/' + p.name: 'data:image/png;base64,' + base64.b64encode(p.read_bytes()).decode('ascii') for p in (APP / 'assets').glob('*.png')}
+    css = (APP / 'styles.css').read_text()
+    for path, uri in assets.items():
+        css = css.replace(path, uri)
     html = (APP / 'index.html').read_text().replace('<link rel="stylesheet" href="./styles.css">', '<style>' + css + '</style>')
     scripts = []
     for name in ['config.js', 'classifications.js', 'rules.js', 'scorm.js', 'app.js']:
         html = html.replace(f'<script src="./{name}" defer></script>', '')
         js = (APP / name).read_text()
         if name == 'app.js':
-            js = js.replace('./assets/vila.png', image_uri)
+            for path, uri in assets.items():
+                js = js.replace(path, uri)
         assert '</script' not in js.lower()
         scripts.append('<script>' + js + '</script>')
     html = html.replace('</body>', '\n'.join(scripts) + '\n</body>')
@@ -48,7 +51,7 @@ def build():
     org = ET.SubElement(orgs, tag('organization'), {'identifier': 'ORG_VILA'})
     ET.SubElement(org, tag('title')).text = 'Vila do ED — Semana Tributária 2026'
     item = ET.SubElement(org, tag('item'), {'identifier': 'ITEM_VILA', 'identifierref': 'SCO_VILA', 'isvisible': 'true'})
-    ET.SubElement(item, tag('title')).text = 'Emissor simplificado de NFS-e — Vila do ED'
+    ET.SubElement(item, tag('title')).text = 'Emissor educacional — comércio, indústria e serviço'
     resources = ET.SubElement(manifest, tag('resources'))
     resource = ET.SubElement(resources, tag('resource'), {'identifier': 'SCO_VILA', 'type': 'webcontent', f'{{{ADL}}}scormtype': 'sco', 'href': 'index.html'})
     for name in files:

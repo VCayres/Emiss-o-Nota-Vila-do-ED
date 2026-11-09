@@ -1,0 +1,157 @@
+{
+  "date": "2026-11-09",
+  "source": "https://github.com/nfephp-org/sped-nfe",
+  "source_type": "cópia pública secundária do esquema; vigência e obrigatoriedade oficial não confirmadas",
+  "package_folder": "PL_010_V1.30",
+  "snapshot_sha256": "444827a7b77c542a738de0c4d56b273987ed5a713f76987b931550e2f6b4f1ff",
+  "primary_source_checks": [
+    {
+      "url": "https://www.nfe.fazenda.gov.br/portal/principal.aspx",
+      "outcome": "HTTPS proxy tunnel 403"
+    },
+    {
+      "url": "https://www.gov.br/receitafederal/pt-br/assuntos/reforma-tributaria-do-consumo",
+      "outcome": "HTTPS proxy tunnel 403"
+    },
+    {
+      "url": "https://dfe-portal.svrs.rs.gov.br/Nfe/Documentos",
+      "outcome": "HTTPS proxy tunnel 403"
+    }
+  ],
+  "warning": "Presença ou cardinalidade no XSD não determina, sozinha, obrigatoriedade fiscal para uma data ou regime. Não foi inferida classificação para os produtos da vila.",
+  "fields": [
+    {
+      "schema": "leiauteNFe_v4.00.xsd",
+      "context": "TNFe/infNFe/det/imposto/IS",
+      "field": "IS",
+      "type": "TIS",
+      "description": "Grupo de informações do Imposto Seletivo"
+    },
+    {
+      "schema": "leiauteNFe_v4.00.xsd",
+      "context": "TNFe/infNFe/det/imposto/IBSCBS",
+      "field": "IBSCBS",
+      "type": "TTribNFe",
+      "description": "Grupo de informações dos tributos IBS, CBS e Imposto Seletivo"
+    },
+    {
+      "schema": "leiauteNFe_v4.00.xsd",
+      "context": "TNFe/infNFe/det/vItem",
+      "field": "vItem",
+      "type": "TDec_1302",
+      "description": "Valor total do Item, correspondente à sua participação no total da nota. A soma dos itens deverá corresponder ao total da nota."
+    },
+    {
+      "schema": "leiauteNFe_v4.00.xsd",
+      "context": "TNFe/infNFe/total/ISTot",
+      "field": "ISTot",
+      "type": "TISTot",
+      "description": "Valores totais da NF com Imposto Seletivo"
+    },
+    {
+      "schema": "leiauteNFe_v4.00.xsd",
+      "context": "TNFe/infNFe/total/IBSCBSTot",
+      "field": "IBSCBSTot",
+      "type": "TIBSCBSMonoTot",
+      "description": "Valores totais da NF com IBS / CBS"
+    },
+    {
+      "schema": "leiauteNFe_v4.00.xsd",
+      "context": "TNFe/infNFe/total/vNFTot",
+      "field": "vNFTot",
+      "type": "TDec_1302",
+      "description": "Valor Total da NF considerando os impostos por fora IBS, CBS e IS"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TTribNFe/CST",
+      "field": "CST",
+      "type": "TCST",
+      "description": "Código Situação Tributária do IBS/CBS"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TTribNFe/cClassTrib",
+      "field": "cClassTrib",
+      "type": "TcClassTrib",
+      "description": ""
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TTribNFe/gIBSCBS",
+      "field": "gIBSCBS",
+      "type": "TCIBS_NFe",
+      "description": ""
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/vBC",
+      "field": "vBC",
+      "type": "TDec1302RTC",
+      "description": "Valor do BC"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gIBSUF",
+      "field": "gIBSUF",
+      "type": null,
+      "description": "Grupo de informações do IBS na UF"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gIBSUF/pIBSUF",
+      "field": "pIBSUF",
+      "type": "TDec_0302_04RTC",
+      "description": "Aliquota do IBS de competência das UF (em percentual)"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gIBSUF/vIBSUF",
+      "field": "vIBSUF",
+      "type": "TDec1302RTC",
+      "description": "Valor do IBS de competência das UF"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gIBSMun",
+      "field": "gIBSMun",
+      "type": null,
+      "description": "Grupo de Informações do IBS no Município"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gIBSMun/pIBSMun",
+      "field": "pIBSMun",
+      "type": "TDec_0302_04RTC",
+      "description": "Aliquota do IBS Municipal (em percentual)"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gIBSMun/vIBSMun",
+      "field": "vIBSMun",
+      "type": "TDec1302RTC",
+      "description": "Valor do IBS Municipal"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gCBS",
+      "field": "gCBS",
+      "type": null,
+      "description": "Grupo de Tributação da CBS"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gCBS/pCBS",
+      "field": "pCBS",
+      "type": "TDec_0302_04RTC",
+      "description": "Aliquota da CBS (em percentual)"
+    },
+    {
+      "schema": "DFeTiposBasicos_v1.00.xsd",
+      "context": "TCIBS_NFe/gCBS/vCBS",
+      "field": "vCBS",
+      "type": "TDec1302RTC",
+      "description": "Valor da CBS"
+    }
+  ]
+}
